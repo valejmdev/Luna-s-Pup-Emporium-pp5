@@ -13,8 +13,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
-    import lunaspupemporium.env as env
+if os.path.isfile("env.py"):
+    import env
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -142,8 +142,6 @@ SITE_ID = 1
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-DATABASE_URL = 'postgres://upbcexyviuy:JjzhADTiPovf@ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech/knelt_spoon_habit_899666'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
