@@ -1,1 +1,1 @@
-web: gunicorn lunaspupemporium.wsgi --log-file -
+web: gunicorn lunaspupemporium.wsgi
