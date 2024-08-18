@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-743243w$r0g!jgt%@5j+f)=#ry2fo06r=sk4=o^vq-_l@xu=dl'
+SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'lunaspupemporium.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.parse(
-        os.environ.get("DATABASE_URL", "postgres://upbcexyviuy:JjzhADTiPovf@ep-gentle-mountain-a23bxz6h-pooler.eu-central-1.aws.neon.tech/knelt_spoon_habit_899666")
+        os.environ.get("DATABASE_URL")
     )
 }
 
