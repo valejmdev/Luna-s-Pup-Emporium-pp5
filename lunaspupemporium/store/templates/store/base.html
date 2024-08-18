@@ -1,0 +1,134 @@
+<!-- Load static files -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Font Awesome Kit -->
+    <script src="https://kit.fontawesome.com/fa4660e17d.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Link to custom CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'quiz_app/main.css' %}">
+
+    <!-- Dynamic page title -->
+    {% if title %}
+    <title>Quizulu App - {{ title }}</title>
+    {% else %}
+    <title>Quizulu App</title>
+    {% endif %}
+</head>
+<body>
+    <!-- Header section with navigation bar -->
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel">
+          <div class="container">
+            <!-- Brand/logo link to homepage -->
+            <a class="navbar-brand mr-4" href="{% url 'index' %}">Luna's Pup Emporium</a>
+            <!-- Toggler button for mobile view -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar links and toggleable content -->
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <!-- Left side of the navbar with navigation links -->
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="#">All Products</a>
+                <a class="nav-item nav-link" href="#">Leashes</a>
+                <a class="nav-item nav-link" href="#">Collars</a>
+                <a class="nav-item nav-link" href="#">Harnesses</a>
+                <a class="nav-item nav-link" href="#">Beds</a>
+                <a class="nav-item nav-link" href="#">Toys</a>
+                <a class="nav-item nav-link" href="#">Special Offers</a>
+              </div>
+
+              <!-- Right side of the navbar with user authentication links -->
+              <div class="navbar-nav">
+                {% if user.is_authenticated %}
+                <!-- Profile and logout links for authenticated users -->
+                  <a class="nav-item nav-link" href="#">Profile</a>
+                  <div class="logout-spacing">
+                    <form method="POST" action="#" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="nav-item nav-link btn btn-link" style="display:inline; padding:0;">Logout</button>
+                    </form>
+                  </div>
+                {% else %}
+                  <!-- Login and register links for unauthenticated users -->
+                  <a class="nav-item nav-link" href="#">Login</a>
+                  <a class="nav-item nav-link" href="#">Register</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- Main content area -->
+      <main class="flex-grow-1">
+        <!-- Display messages if any -->
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+        <!-- Block for page-specific content -->
+        {% block content %}{% endblock %}
+      </main>
+
+      <!-- Footer section with contact information and social media links -->
+      <footer class="footer">
+        <div class="row footer-display">
+            <div class="col-md-5 footer-center">
+                <p class="footer-head"><i class="fa fa-cart"></i>Luna's Pup Emporium</p>
+                <div class="row">
+                    <div class="col-6">
+                        <!-- Footer navigation links -->
+                        <ul class="list-unstyled">
+                            <li class="footer-link-space"><a href="#">Homepage</a></li>
+                            <li class="footer-link-space"><a href="#">About Us</a></li>
+                            <li class="footer-link-space"><a href="#">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Social media links -->
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a href="https://www.facebook.com/" class="nav-link pl-0" target="_blank" aria-label="Facebook">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://x.com/" class="nav-link" target="_blank" aria-label="X">
+                            <i class="fab fa-x-twitter fa-lg"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="https://www.instagram.com/" class="nav-link" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                    </li>
+                </ul>
+                <br>
+            </div>
+        </div>
+      </footer>
+    
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- Custom script for additional functionality -->
+<script src="{% static 'js/quiz.js' %}"></script>
+
+</body>
+</html>
