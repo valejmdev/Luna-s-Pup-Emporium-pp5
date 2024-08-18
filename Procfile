@@ -1,1 +1,0 @@
-web: gunicorn lunaspupemporium/lunaspupemporium.wsgi:application --workers 3
