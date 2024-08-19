@@ -58,6 +58,9 @@ INSTALLED_APPS = [
 
     # Your apps
     'store',
+    'cart',
+    'checkout',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -176,6 +179,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
