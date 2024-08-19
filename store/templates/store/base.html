@@ -39,20 +39,22 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
               <!-- Left side of the navbar with navigation links -->
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="#">All Products</a>
-                <a class="nav-item nav-link" href="#">Leashes</a>
-                <a class="nav-item nav-link" href="#">Collars</a>
-                <a class="nav-item nav-link" href="#">Harnesses</a>
-                <a class="nav-item nav-link" href="#">Beds</a>
-                <a class="nav-item nav-link" href="#">Toys</a>
-                <a class="nav-item nav-link" href="#">Special Offers</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">All Products</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Leashes</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Collars</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Harnesses</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Beds</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Toys</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Special Offers</a>
+                <a class="nav-item nav-link" href="{% url 'store:about_us' %}">About Us</a>
+                <a class="nav-item nav-link" href="{% url 'store:contact_us' %}">Contact Us</a>
               </div>
 
               <!-- Right side of the navbar with user authentication links -->
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <!-- Profile and logout links for authenticated users -->
-                  <a class="nav-item nav-link" href="#">Profile</a>
+                  <a class="nav-item nav-link" href="{% url 'store:profile' %}">Profile</a>
                   <div class="logout-spacing">
                     <form method="POST" action="#" style="display:inline;">
                         {% csrf_token %}
@@ -61,8 +63,8 @@
                   </div>
                 {% else %}
                   <!-- Login and register links for unauthenticated users -->
-                  <a class="nav-item nav-link" href="#">Login</a>
-                  <a class="nav-item nav-link" href="#">Register</a>
+                  <a class="nav-item nav-link" href="{% url 'store:login' %}">Login</a>
+                  <a class="nav-item nav-link" href="{% url 'store:register' %}">Register</a>
                 {% endif %}
               </div>
             </div>
@@ -93,10 +95,14 @@
                     <div class="col-6">
                         <!-- Footer navigation links -->
                         <ul class="list-unstyled">
-                            <li class="footer-link-space"><a href="#">Homepage</a></li>
-                            <li class="footer-link-space"><a href="#">About Us</a></li>
-                            <li class="footer-link-space"><a href="#">Terms and Conditions</a></li>
-                        </ul>
+                          <li class="footer-link-space"><a href="{% url 'index' %}">Homepage</a></li>
+                          <li class="footer-link-space"><a href="{% url 'about_us' %}">About Us</a></li>
+                          <li class="footer-link-space"><a href="{% url 'faq' %}">FAQ</a></li>
+                          <li class="footer-link-space"><a href="{% url 'terms_conditions' %}">Terms and Conditions</a></li>
+                      </ul>
+                      <!-- Call-to-action for newsletter -->
+                      <p>Subscribe to our newsletter for the latest updates!</p>
+                      <a href="{% url 'store:newsletter' %}" class="btn btn-primary">Subscribe</a>
                     </div>
                 </div>
                 <!-- Social media links -->
