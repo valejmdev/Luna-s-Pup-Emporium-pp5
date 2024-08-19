@@ -1,0 +1,14 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+    <!-- Message to inform the user that they have been successfully logged out -->
+    <h2>You have been logged out</h2>
+
+    <!-- Section providing a link for the user to log in again -->
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <!-- Link to redirect the user to the login page -->
+            <a href="{% url 'login' %}">Log In Again</a>
+        </small>
+    </div>
+{% endblock content %}
