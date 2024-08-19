@@ -1,0 +1,15 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Subscribe to Our Newsletter</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+        </div>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+    </form>
+</div>
+{% endblock %}
