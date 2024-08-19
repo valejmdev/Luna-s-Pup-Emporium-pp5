@@ -15,240 +15,34 @@ main {
     flex-grow: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: #4B4453;
-}
+/* Existing Styles for Headings, Lists, etc. */
+/* ... */
 
-h5 {
-    font-size: x-large;
-    color: #671DE7;
-}
-
-ul {
-    margin: 0;
-}
-
-p {
-    margin-top: 0.9rem;
-    padding-bottom: 1rem;
-}
-
-select {
-    font-size: small !important;
-}
-
-select textarea {
-    font-size: small;
-}
-
-/* Background and Text Colors */
-.bg-steel {
-    background-color: #4B4453;
-}
-
-.site-header .navbar-nav .nav-link {
-    color: #fafafa;
-}
-
-.site-header .navbar-nav .nav-link:hover {
-    color: #B1A8B9;
-}
-
-.site-header .navbar-nav .nav-link.active {
-    font-weight: 500;
-}
-
-.sidebar-link-color{
-    color:#007356 !important;
-}
-
+/* Alert Styles */
 .alert {
-    background-color: #671DE7;
-    color: #fafafa;
-}
-
-/* Layout and Spacing */
-.logout-spacing {
-    margin-top: .32rem;
-}
-
-.footer-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.footer-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.text-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-.content-section {
-    background: #ffffff;
-    padding: 20px;
-    border: 1px solid #dddddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.login-spacing {
-    display: flex;
-    flex-direction: column;
-}
-
-.equal-height {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-
-.border-box, .content-section {
-    flex: 1;
-    border: 1px solid #000;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
-
-.btn-spacing {
-    margin: 0.5rem;
-}
-
-.margin-between {
-    margin-bottom: 20px;
-}
-
-
-/* Form and Button Styles */
-.border {
-    padding: 10px;
-}
-
-.col-sm {
-    margin: 10px;
-}
-
-.row {
-    margin: 0;
-}
-
-.col-md-8, .col-md-4 {
     padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
 }
 
-.list-group-item-light {
-    background-color: #f9f9f9;
+.alert.success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
 }
 
-.form-check {
-    margin: 10px 0;
+.alert.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }
 
-.form-check-label {
-    margin-left: 5px;
-}
-
-textarea.form-control {
-    width: 100%;           
-    max-width: 100%;       
-    box-sizing: border-box; 
-    padding: 10px;         
-    resize: vertical;      
-    margin-top: 10px;      
-}
-
-.container {
-    padding: 20px;         
-}
-
-.form-row .form-control {
-    margin-bottom: 15px;
-}
-
-.content-section {
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #ffffff;
-}
-
-/* Media Queries for Responsive Design */
-
-/* Small Devices (Phones) */
-@media (min-width: 576px) {
-    main {
-        margin-top: 2.5rem;
-    }
-    .categories-spacing {
-        max-width: 70px;
-    }
-    .content-section {
-        padding: 5px;
-    }
-    .form-row {
-        flex-direction: column;
-    }
-    .form-row .col-md-6 {
-        margin-bottom: 15px;
-    }
-}
-
-/* Medium Devices (Tablets) */
-@media (min-width: 768px) {
-    main {
-        margin-top: 2.5rem;
-    }
-    .categories-spacing {
-        max-width: 80px;
-    }
-    .content-section {
-        padding: 10px;
-    }
-    .form-row {
-        flex-direction: row;
-    }
-    .form-row .col-md-6 {
-        margin-bottom: 0;
-    }
-
-    .footer {
-        min-height: 200px;
-    }
-}
-
-/* Large Devices (Desktops) */
-@media (min-width: 992px) {
-    main {
-        margin-top: 2.5rem;
-    }
-    .content-section {
-        padding: 15px;
-    }
-}
-
-/* Extra Large Devices (Large Desktops) */
-@media (min-width: 1200px) {
-    main {
-        margin-top: 2.5rem;
-    }
+#message-container {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 1000;
 }
 
 /* Footer CSS Rules */
@@ -279,7 +73,7 @@ footer a {
     margin: 25px;
 }
 
-.footer-head{
+.footer-head {
     color: #06e0b1 !important;
     font-size: x-large;
 }
