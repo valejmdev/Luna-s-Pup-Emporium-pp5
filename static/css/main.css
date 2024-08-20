@@ -18,6 +18,27 @@ main {
 /* Existing Styles for Headings, Lists, etc. */
 /* ... */
 
+/* Background and Text Colors */
+.bg-steel {
+    background-color: #4B4453;
+}
+
+.site-header .navbar-nav .nav-link {
+    color: #fafafa;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #B1A8B9;
+}
+
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+}
+
+.sidebar-link-color{
+    color:#007356 !important;
+}
+
 /* Alert Styles */
 .alert {
     padding: 15px;
