@@ -29,7 +29,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-steel">
           <div class="container">
             <!-- Brand/logo link to homepage -->
-            <a class="navbar-brand mr-4" href="{% url 'index' %}">Luna's Pup Emporium</a>
+            <a class="navbar-brand mr-4" href="{% url 'store:index' %}">Luna's Pup Emporium</a>
             <!-- Toggler button for mobile view -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -39,13 +39,13 @@
             <div class="collapse navbar-collapse" id="navbarToggle">
               <!-- Left side of the navbar with navigation links -->
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">All Products</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Leashes</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Collars</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Harnesses</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Beds</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Toys</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' %}">Special Offers</a>
+                <a class="nav-item nav-link" href="{% url 'store:all_products' %}">All Products</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' 'leashes' %}">Leashes</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' 'collars' %}">Collars</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' 'harnesses' %}">Harnesses</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' 'beds' %}">Beds</a>
+                <a class="nav-item nav-link" href="{% url 'store:product_list' 'toys' %}">Toys</a>
+                <a class="nav-item nav-link" href="#">Special Offers</a>
                 <a class="nav-item nav-link" href="{% url 'store:about_us' %}">About Us</a>
                 <a class="nav-item nav-link" href="{% url 'store:contact_us' %}">Contact Us</a>
               </div>
@@ -54,7 +54,7 @@
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <!-- Profile and logout links for authenticated users -->
-                  <a class="nav-item nav-link" href="{% url 'store:profile' %}">Profile</a>
+                  <a class="nav-item nav-link" href="{% url 'profile:profile' %}">Profile</a>
                   <div class="logout-spacing">
                     <form method="POST" action="#" style="display:inline;">
                         {% csrf_token %}
@@ -63,8 +63,8 @@
                   </div>
                 {% else %}
                   <!-- Login and register links for unauthenticated users -->
-                  <a class="nav-item nav-link" href="{% url 'store:login' %}">Login</a>
-                  <a class="nav-item nav-link" href="{% url 'store:register' %}">Register</a>
+                  <a class="nav-item nav-link" href="{% url 'profile:login' %}">Login</a>
+                  <a class="nav-item nav-link" href="{% url 'profile:register' %}">Register</a>
                 {% endif %}
               </div>
             </div>
@@ -95,14 +95,14 @@
                     <div class="col-6">
                         <!-- Footer navigation links -->
                         <ul class="list-unstyled">
-                          <li class="footer-link-space"><a href="{% url 'index' %}">Homepage</a></li>
-                          <li class="footer-link-space"><a href="{% url 'about_us' %}">About Us</a></li>
-                          <li class="footer-link-space"><a href="{% url 'faq' %}">FAQ</a></li>
-                          <li class="footer-link-space"><a href="{% url 'terms_conditions' %}">Terms and Conditions</a></li>
+                          <li class="footer-link-space"><a href="{% url 'store:index' %}">Homepage</a></li>
+                          <li class="footer-link-space"><a href="{% url 'store:about_us' %}">About Us</a></li>
+                          <li class="footer-link-space"><a href="{% url 'store:faq' %}">FAQ</a></li>
+                          <li class="footer-link-space"><a href="{% url 'profile:terms_conditions' %}">Terms and Conditions</a></li>
                       </ul>
                       <!-- Call-to-action for newsletter -->
                       <p>Subscribe to our newsletter for the latest updates!</p>
-                      <a href="{% url 'store:newsletter' %}" class="btn btn-primary">Subscribe</a>
+                      <a href="{% url 'profile:newsletter' %}" class="btn btn-primary">Subscribe</a>
                     </div>
                 </div>
                 <!-- Social media links -->
