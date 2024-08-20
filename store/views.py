@@ -8,7 +8,7 @@ def product_list(request, category_slug=None):
         products = category.products.all()  # Using related_name='products'
     else:
         products = Product.objects.all()
-    return render(request, 'products/product_list.html', {'products': products, 'category_slug': category_slug})
+    return render(request, 'store/product_list.html', {'products': products, 'category_slug': category_slug})
 
 # Product Detail View: Displays details of a single product
 def product_detail(request, product_id):
@@ -19,7 +19,7 @@ def product_detail(request, product_id):
 # View to display all products
 def all_products(request):
     products = Product.objects.all()
-    return render(request, 'products/all_products.html', {'products': products})
+    return render(request, 'store/all_products.html', {'products': products})
 
 def index(request):
     return render(request, 'store/index.html')
