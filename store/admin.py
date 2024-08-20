@@ -13,5 +13,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
-    list_display = ('product', 'image')
+    list_display = ('product', 'featured_image')
     search_fields = ('product__name',)
