@@ -1,13 +1,6 @@
-{% if cart.items.all %}
-        <ul>
-            {% for item in cart.items.all %}
-                <li>
-                    {{ item.product.name }} - {{ item.quantity }}
-                    <a href="{% url 'cart_remove' item.product.id %}">Remove</a>
-                </li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'checkout' %}">Proceed to Checkout</a>
-    {% else %}
-        <p>Your cart is empty.</p>
-    {% endif %}
+{% extends "store/base.html" %}
+
+{% block content %}
+<p>Item has been removed from your cart.</p>
+<a href="{% url 'cart_detail' %}">Go to Cart</a>
+{% endblock %}
