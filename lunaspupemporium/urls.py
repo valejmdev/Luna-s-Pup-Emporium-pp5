@@ -21,10 +21,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('store.urls')),
-    path('cart/', include('cart.urls')),
-    path('checkout/', include('checkout.urls')),
-    path('profiles/', include('profiles.urls')),
+    path('', include('store.urls', namespace='store')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('checkout/', include('checkout.urls', namespace='checkout')),
+    path('profiles/', include('profiles.urls', namespace='profiles')),
 ]
 
 if settings.DEBUG:
