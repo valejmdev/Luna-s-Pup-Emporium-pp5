@@ -1,3 +1,28 @@
-{% extends "store/base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
+<h1>
+    {% if category_slug %}
+        Products in "{{ category_slug | title }}"
+    {% else %}
+        All Products
+    {% endif %}
+</h1>
+
+<ul>
+    {% for product in products %}
+    <li>
+        <h2><a href="{% url 'store:product_detail' product.id %}">{{ product.name }}</a></h2>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:150px;">
+        <p>{{ product.description }}</p>
+        <p>Price: ${{ product.price }}</p>
+    </li>
+    {% empty %}
+    <p>No products found.</p>
+    {% endfor %}
+</ul>
+
+{% if category_slug %}
+    <a href="{% url 'store:all_products' %}">Back to all products</a>
+{% endif %}
+{% endblock %}
