@@ -14,7 +14,7 @@ def product_list(request, category_slug=None):
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     images = product.images.all()  # Fetching related product images
-    return render(request, 'products/product_detail.html', {'product': product, 'images': images})
+    return render(request, 'store/product_detail.html', {'product': product, 'images': images})
 
 # View to display all products
 def all_products(request):
