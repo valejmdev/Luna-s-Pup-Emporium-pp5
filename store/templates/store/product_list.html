@@ -1,4 +1,5 @@
 {% extends "store/base.html" %}
+{% load static %}
 
 {% block content %}
 <h1>
@@ -13,7 +14,13 @@
     {% for product in products %}
     <li>
         <h2><a href="{% url 'store:product_detail' product.id %}">{{ product.name }}</a></h2>
-        <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:150px;">
+        <div class="image-container">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image.url }}" alt="{{ product.name }}" style="width:250px;">
+            {% else %}
+              <img src="{% static 'images/default.jpg' %}" alt="default image" style="width:250px;">
+            {% endif %}
+        </div>
         <p>{{ product.description }}</p>
         <p>Price: ${{ product.price }}</p>
     </li>
