@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login as auth_login
-from django.contrib.auth.forms import AuthenticationForm
-from .forms import UserRegisterForm, UserUpdateForm
+from .models import UserProfile  
+from .forms import UserUpdateForm
+from django.contrib.auth import logout as auth_logout
 
 def register(request):
     """
@@ -21,29 +22,41 @@ def register(request):
     return render(request, 'profiles/register.html', {'form': form})
 
 @login_required
-def profile(request):
-    """
-    View to handle both viewing and updating the user profile.
-    """
+def profile(request, username):
+    user = get_object_or_404(User, username=username)
+
+    # Ensure the user has a UserProfile instance
+    try:
+        user_profile = user.userprofile
+    except UserProfile.DoesNotExist:
+        user_profile = UserProfile.objects.create(user=user)
+
     if request.method == 'POST':
-        u_form = UserUpdateForm(request.POST, instance=request.user)
+        u_form = UserUpdateForm(request.POST, instance=user)
         if 'update' in request.POST and u_form.is_valid():
             u_form.save()
             messages.success(request, 'Your profile has been updated!')
-            return redirect('profile')
+            return redirect('profile:profile', username=user.username)
 
         if 'delete' in request.POST:
-            request.user.delete()
+            user.delete()
             messages.success(request, 'Your profile has been deleted.')
             return redirect('home')
 
     else:
-        u_form = UserUpdateForm(instance=request.user)
+        # Here, ensure that the form is populated with existing data
+        u_form = UserUpdateForm(
+            instance=user,
+            initial={
+                'address': user_profile.address,
+                'phone_number': user_profile.phone_number,
+            }
+        )
 
     is_edit_mode = request.GET.get('edit') == 'true'
 
     context = {
-        'user': request.user,
+        'user': user,
         'u_form': u_form,
         'is_edit_mode': is_edit_mode
     }
@@ -67,13 +80,8 @@ def login(request):
     return render(request, 'profiles/login.html', {'form': form})
 
 def logout(request):
-    """
-    Handle user logout.
-    """
-    from django.contrib.auth import logout as auth_logout
     auth_logout(request)
-    messages.success(request, 'You have been logged out.')
-    return redirect('login')
+    return redirect('store/index.html')
 
 def newsletter(request):
     return render(request, 'profiles/newsletter.html')
