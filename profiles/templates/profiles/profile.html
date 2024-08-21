@@ -1,17 +1,12 @@
 {% extends "store/base.html" %}
-
 {% load custom_filters %}
 {% block content %}
 <div class="container mt-5">
     <div class="content-section">
-        <!-- User profile details or edit form -->
         <div class="media">
             <div class="media-body">
-                <!-- Display the username of the user -->
                 <h2 class="account-heading">{{ user.username }}</h2>
-                <!-- Display the email of the user -->
                 <p class="text-secondary">{{ user.email }}</p>
-                <!-- Display the bio if it exists -->
                 {% if user.profile.bio %}
                     <p class="text-secondary">{{ user.profile.bio }}</p>
                 {% endif %}
@@ -19,39 +14,36 @@
         </div>
 
         {% if is_edit_mode %}
-        <!-- Form for updating user profile information -->
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Profile Info</legend>
                 <div class="form-row">
-                    <!-- Column for username field -->
                     <div class="col-md-6 mb-3">
                         {{ u_form.username.label_tag }}
                         {{ u_form.username|add_class:"form-control" }}
                     </div>
-                    <!-- Column for email field -->
                     <div class="col-md-6 mb-3">
                         {{ u_form.email.label_tag }}
                         {{ u_form.email|add_class:"form-control" }}
                     </div>
-                </div>
-                <div class="form-row">
-                    <!-- Column for bio field -->
                     <div class="col-md-6 mb-3">
-                        {{ p_form.bio.label_tag }}
-                        {{ p_form.bio|add_class:"form-control" }}
+                        {{ u_form.address.label_tag }}
+                        {{ u_form.address|add_class:"form-control" }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ u_form.phone_number.label_tag }}
+                        {{ u_form.phone_number|add_class:"form-control" }}
                     </div>
                 </div>
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info btn-spacing" type="submit" name="update">Update</button>
                 <button class="btn btn-outline-danger btn-spacing" type="submit" name="delete" onclick="return confirmDelete();">Delete Profile</button>
-                <a href="{% url 'profile' %}" class="btn btn-secondary btn-spacing">Cancel</a>
+                <a href="{% url 'profile:profile' user.username %}" class="btn btn-secondary btn-spacing">Cancel</a>
             </div>
         </form>
         {% else %}
-        <!-- Button to switch to edit mode -->
         <a href="?edit=true" class="btn btn-outline-primary">Edit Profile</a>
         {% endif %}
     </div>
