@@ -54,11 +54,11 @@
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <!-- Profile and logout links for authenticated users -->
-                  <a class="nav-item nav-link" href="{% url 'profile:profile' %}">Profile</a>
+                  <a class="nav-item nav-link" href="{% url 'profile:profile' user.username %}">Profile</a>
                   <div class="logout-spacing">
-                    <form method="POST" action="#" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="nav-item nav-link btn btn-link" style="display:inline; padding:0;">Logout</button>
+                    <form method="POST" action="{% url 'profile:logout' %}" style="display:inline;">
+                      {% csrf_token %}
+                      <button type="submit" class="nav-item nav-link btn btn-link" style="display:inline; padding:0;">Logout</button>
                     </form>
                   </div>
                 {% else %}
@@ -66,7 +66,7 @@
                   <a class="nav-item nav-link" href="{% url 'profile:login' %}">Login</a>
                   <a class="nav-item nav-link" href="{% url 'profile:register' %}">Register</a>
                 {% endif %}
-              </div>
+            </div>
             </div>
           </div>
         </nav>
