@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com',
                  '127.0.0.1',
@@ -56,7 +56,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 
-    # Your apps
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+
+    # My apps
     'store',
     'cart',
     'checkout',
@@ -80,14 +83,20 @@ ROOT_URLCONF = 'lunaspupemporium.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'profiles', 'templates'),
+            os.path.join(BASE_DIR, 'cart', 'templates'),      
+            os.path.join(BASE_DIR, 'checkout', 'templates'), 
+            os.path.join(BASE_DIR, 'store', 'templates'),     
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                'django.template.context_processors.request',  # Important for Allauth to work
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # Add any other context processors you need
             ],
         },
     },
@@ -135,6 +144,19 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+ACCOUNT_FORMS = {
+    'signup': 'your_app_name.forms.CustomSignupForm',
+}
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'optional' 
+ACCOUNT_UNIQUE_EMAIL = True
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True  
+ACCOUNT_USERNAME_MIN_LENGTH = 4
+DEFAULT_FROM_EMAIL = 'noreply@lunapupemp.com'
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
