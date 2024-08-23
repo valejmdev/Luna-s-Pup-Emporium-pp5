@@ -46,3 +46,11 @@ def profile(request, username):
     }
 
     return render(request, 'profiles/profile.html', context)
+
+def newsletter(request):
+    # Your view logic here
+    return render(request, 'profiles/newsletter.html')
+
+def termsconditions(request):
+    # Your view logic here
+    return render(request, 'profiles/terms_conditions.html')
