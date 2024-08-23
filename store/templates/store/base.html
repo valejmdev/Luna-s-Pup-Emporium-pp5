@@ -54,7 +54,7 @@
               <div class="navbar-nav">
                 {% if user.is_authenticated %}
                 <!-- Profile and logout links for authenticated users -->
-                  <a class="nav-item nav-link" href="{% url 'profile:profile' user.username %}">Profile</a>
+                  <a class="nav-item nav-link" href="{% url 'profiles:profile' user.username %}">Profile</a>
                   <div class="logout-spacing">
                     <form method="POST" action="{% url 'account_logout' %}" style="display:inline;">
                       {% csrf_token %}
@@ -98,11 +98,11 @@
                           <li class="footer-link-space"><a href="{% url 'store:index' %}">Homepage</a></li>
                           <li class="footer-link-space"><a href="{% url 'store:about_us' %}">About Us</a></li>
                           <li class="footer-link-space"><a href="{% url 'store:faq' %}">FAQ</a></li>
-                          <li class="footer-link-space"><a href="{% url 'profile:terms_conditions' %}">Terms and Conditions</a></li>
+                          <li class="footer-link-space"><a href="{% url 'profiles:terms_conditions' %}">Terms and Conditions</a></li>
                       </ul>
                       <!-- Call-to-action for newsletter -->
                       <p>Subscribe to our newsletter for the latest updates!</p>
-                      <a href="{% url 'profile:newsletter' %}" class="btn btn-primary">Subscribe</a>
+                      <a href="{% url 'profiles:newsletter' %}" class="btn btn-primary">Subscribe</a>
                     </div>
                 </div>
                 <!-- Social media links -->
