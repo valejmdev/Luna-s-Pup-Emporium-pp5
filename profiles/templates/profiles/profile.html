@@ -40,7 +40,7 @@
             <div class="form-group">
                 <button class="btn btn-outline-info btn-spacing" type="submit" name="update">Update</button>
                 <button class="btn btn-outline-danger btn-spacing" type="submit" name="delete" onclick="return confirmDelete();">Delete Profile</button>
-                <a href="{% url 'profile:profile' user.username %}" class="btn btn-secondary btn-spacing">Cancel</a>
+                <a href=" {% url 'profiles:profile' user.username %} " class="btn btn-secondary btn-spacing">Cancel</a>
             </div>
         </form>
         {% else %}
