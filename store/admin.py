@@ -1,17 +1,20 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage
+from .models import Product, Category, ProductImage, Review
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'on_sale', 'rating', 'get_sale_price')
+    list_filter = ('on_sale',)
+    search_fields = ('name', 'description')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', 'slug', 'description')
-    search_fields = ('name',)
-
-@admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'stock', 'category')
-    search_fields = ('name', 'category__name')
 
 @admin.register(ProductImage)
 class ProductImageAdmin(admin.ModelAdmin):
     list_display = ('product', 'featured_image')
-    search_fields = ('product__name',)
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('product', 'user', 'rating', 'comment')
