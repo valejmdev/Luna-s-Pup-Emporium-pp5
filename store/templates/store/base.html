@@ -38,35 +38,48 @@
             <!-- Navbar links and toggleable content -->
             <div class="collapse navbar-collapse" id="navbarToggle">
               <!-- Left side of the navbar with navigation links -->
-              <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{% url 'store:all_products' %}">All Products</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' 'leashes' %}">Leashes</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' 'collars' %}">Collars</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' 'harness' %}">Harnesses</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' 'bed' %}">Beds</a>
-                <a class="nav-item nav-link" href="{% url 'store:product_list' 'toys' %}">Toys</a>
-                <a class="nav-item nav-link" href="#">Special Offers</a>
-                <a class="nav-item nav-link" href="{% url 'store:about_us' %}">About Us</a>
-                <a class="nav-item nav-link" href="{% url 'store:contact_us' %}">Contact Us</a>
-              </div>
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'store:all_products' %}">All Products</a></li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Products
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'store:product_list' 'leashes' %}">Leashes</a>
+                    <a class="dropdown-item" href="{% url 'store:product_list' 'collars' %}">Collars</a>
+                    <a class="dropdown-item" href="{% url 'store:product_list' 'harness' %}">Harnesses</a>
+                    <a class="dropdown-item" href="{% url 'store:product_list' 'bed' %}">Beds</a>
+                    <a class="dropdown-item" href="{% url 'store:product_list' 'toys' %}">Toys</a>
+                    <a class="dropdown-item" href="{% url 'store:special_offers' %}">Special Offers</a>
+                  </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'store:about_us' %}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'store:contact_us' %}">Contact Us</a></li>
+              </ul>
+
+              <!-- Add Search Bar Form -->
+              <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'store:all_products' %}">
+                <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search products..." aria-label="Search" value="{{ search_term }}">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
 
               <!-- Right side of the navbar with user authentication links -->
-              <div class="navbar-nav">
+              <ul class="navbar-nav">
                 {% if user.is_authenticated %}
-                <!-- Profile and logout links for authenticated users -->
-                  <a class="nav-item nav-link" href="{% url 'profiles:profile' user.username %}">Profile</a>
-                  <div class="logout-spacing">
-                    <form method="POST" action="{% url 'account_logout' %}" style="display:inline;">
-                      {% csrf_token %}
-                      <button type="submit" class="nav-item nav-link btn btn-link" style="display:inline; padding:0;">Logout</button>
-                    </form>
-                  </div>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'profiles:profile' user.username %}">Profile</a>
+                </li>
+                <li class="nav-item">
+                  <form method="POST" action="{% url 'account_logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link btn btn-link" style="display:inline; padding:0;">Logout</button>
+                  </form>
+                </li>
                 {% else %}
-                  <!-- Login and register links for unauthenticated users -->
-                  <a class="nav-item nav-link" href="{% url 'account_login' %}">Login</a>
-                  <a class="nav-item nav-link" href="{% url 'account_signup' %}">Register</a>
+                <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
                 {% endif %}
-            </div>
+              </ul>
             </div>
           </div>
         </nav>
@@ -87,51 +100,35 @@
       </main>
 
       <!-- Footer section with contact information and social media links -->
-      <footer class="footer">
-        <div class="row footer-display">
-            <div class="col-md-5 footer-center">
-                <p class="footer-head"><i class="fa fa-cart"></i>Luna's Pup Emporium</p>
-                <div class="row">
-                    <div class="col-6">
-                        <!-- Footer navigation links -->
-                        <ul class="list-unstyled">
-                          <li class="footer-link-space"><a href="{% url 'store:index' %}">Homepage</a></li>
-                          <li class="footer-link-space"><a href="{% url 'store:about_us' %}">About Us</a></li>
-                          <li class="footer-link-space"><a href="{% url 'store:faq' %}">FAQ</a></li>
-                          <li class="footer-link-space"><a href="{% url 'profiles:terms_conditions' %}">Terms and Conditions</a></li>
-                      </ul>
-                      <!-- Call-to-action for newsletter -->
-                      <p>Subscribe to our newsletter for the latest updates!</p>
-                      <a href="{% url 'profiles:newsletter' %}" class="btn btn-primary">Subscribe</a>
-                    </div>
-                </div>
-                <!-- Social media links -->
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a href="https://www.facebook.com/" class="nav-link pl-0" target="_blank" aria-label="Facebook">
-                            <i class="fab fa-facebook-f fa-lg"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://x.com/" class="nav-link" target="_blank" aria-label="X">
-                            <i class="fab fa-x-twitter fa-lg"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="https://www.instagram.com/" class="nav-link" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram fa-lg"></i>
-                        </a>
-                    </li>
-                </ul>
-                <br>
+      <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md-4">
+              <h5 class="footer-head">Luna's Pup Emporium</h5>
+              <ul class="list-unstyled">
+                <li><a href="{% url 'store:index' %}">Homepage</a></li>
+                <li><a href="{% url 'store:about_us' %}">About Us</a></li>
+                <li><a href="{% url 'store:faq' %}">FAQ</a></li>
+                <li><a href="{% url 'profiles:terms_conditions' %}">Terms and Conditions</a></li>
+              </ul>
             </div>
+            <div class="col-md-4">
+              <p>Subscribe to our newsletter for the latest updates!</p>
+              <a href="{% url 'profiles:newsletter' %}" class="btn btn-primary">Subscribe</a>
+            </div>
+            <div class="col-md-4">
+              <h5 class="footer-head">Follow us</h5>
+              <ul class="nav">
+                <li class="nav-item"><a href="https://www.facebook.com/" class="nav-link" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="nav-item"><a href="https://x.com/" class="nav-link" target="_blank"><i class="fab fa-x-twitter"></i></a></li>
+                <li class="nav-item"><a href="https://www.instagram.com/" class="nav-link" target="_blank"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </footer>
     
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
-</body>
-</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
