@@ -1,4 +1,3 @@
-<!-- product_detail.html -->
 {% extends "store/base.html" %}
 {% load static %}
 
@@ -10,8 +9,17 @@
   <img src="{% static 'images/default.jpg' %}" alt="default image" style="width:250px;">
 {% endif %} 
 <p>{{ product.description }}</p>
-<p>Price: ${{ product.price }}</p>
+
+{% if product.on_sale %}
+  <p>Original Price: <s>${{ product.price }}</s></p>
+  <p>Sale Price: <span style="color: red;">${{ product.sale_price }}</span></p>
+{% else %}
+  <p>Price: ${{ product.price }}</p>
+{% endif %}
+
 <p>Stock: {{ product.stock }}</p>
+
+<p>Average Rating: {{ product.avg_rating }} / 5</p>
 
 <h3>Additional Images:</h3>
 {% for image in images %}
