@@ -83,7 +83,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{% url 'cart:cart_detail' %}">
                     <i class="fas fa-shopping-cart"></i>
-                    <span class="badge badge-light">4</span>
+                    {% if cart_items_count > 0 %}
+                      <span class="badge badge-light">{{ cart_items_count }}</span>
+                    {% endif %}
                   </a>
                 </li>
               </ul>
