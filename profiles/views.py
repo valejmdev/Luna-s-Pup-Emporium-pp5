@@ -20,7 +20,7 @@ def profile(request, username):
         if 'update' in request.POST and u_form.is_valid():
             u_form.save()
             messages.success(request, 'Your profile has been updated!')
-            return redirect('profile:profile', username=user.username)
+            return redirect('profiles:profile', username=user.username)  # Corrected here
 
         if 'delete' in request.POST:
             user.delete()
@@ -51,6 +51,3 @@ def newsletter(request):
     # Your view logic here
     return render(request, 'profiles/newsletter.html')
 
-def termsconditions(request):
-    # Your view logic here
-    return render(request, 'profiles/terms_conditions.html')
