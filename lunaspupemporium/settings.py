@@ -93,10 +93,10 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  # Important for Allauth to work
+                'django.template.context_processors.request',  
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Add any other context processors you need
+                'cart.context_processors.cart_item_count'
             ],
         },
     },
