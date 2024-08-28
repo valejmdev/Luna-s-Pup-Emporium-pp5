@@ -62,3 +62,6 @@ def about_us(request):
 
 def contact_us(request):
     return render(request, 'store/contact_us.html')
+
+def terms_conditions(request):
+    return render(request, 'store/terms_conditions.html')
