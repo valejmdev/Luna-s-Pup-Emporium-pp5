@@ -22,6 +22,8 @@
             {% endif %}
         </div>
         <p>{{ product.description }}</p>
+
+
         {% if product.on_sale %}
           <p>Original Price: <s>${{ product.price }}</s></p>
           <p>Sale Price: <span style="color: red;">${{ product.sale_price }}</span></p>
@@ -29,6 +31,13 @@
           <p>Price: ${{ product.price }}</p>
         {% endif %}
         <p>Rating: {{ product.avg_rating }} / 5</p>
+
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Add to Cart</button>
+        </form>
+
     </li>
     {% empty %}
     <p>No products found.</p>
