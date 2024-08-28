@@ -79,6 +79,13 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
                 {% endif %}
+                <!-- Cart Icon -->
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'cart:cart_detail' %}">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge badge-light">4</span>
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -109,7 +116,7 @@
                 <li><a href="{% url 'store:index' %}">Homepage</a></li>
                 <li><a href="{% url 'store:about_us' %}">About Us</a></li>
                 <li><a href="{% url 'store:faq' %}">FAQ</a></li>
-                <li><a href="{% url 'profiles:terms_conditions' %}">Terms and Conditions</a></li>
+                <li><a href="{% url 'store:terms_conditions' %}">Terms and Conditions</a></li>
               </ul>
             </div>
             <div class="col-md-4">
