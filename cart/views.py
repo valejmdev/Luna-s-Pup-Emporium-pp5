@@ -5,8 +5,11 @@ from store.models import Product
 from .models import Cart, CartItem
 
 def get_or_create_cart(user):
-    cart, created = Cart.objects.get_or_create(user=user)
-    return cart
+    if user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=user)
+        return cart
+    else:
+        return None
 
 def cart_add(request, product_id):
     cart = get_or_create_cart(request.user)
