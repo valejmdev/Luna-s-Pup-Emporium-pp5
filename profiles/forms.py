@@ -9,11 +9,20 @@ class CustomSignupForm(SignupForm):
 
     def save(self, request):
         user = super(CustomSignupForm, self).save(request)
-        UserProfile.objects.create(
-            user=user,
-            address=self.cleaned_data.get('address'),
-            phone_number=self.cleaned_data.get('phone_number')
-        )
+        print(f"User {user.username} created successfully.")  # Debug message
+
+        # Create or update the UserProfile for the new user
+        user_profile, created = UserProfile.objects.get_or_create(user=user)
+        
+        print(f"Profile created: {created}, updating profile data.")  # Debug message
+
+        # Update the profile fields
+        user_profile.address = self.cleaned_data.get('address')
+        user_profile.phone_number = self.cleaned_data.get('phone_number')
+        user_profile.save()
+
+        print("Profile saved successfully.")  # Debug message
+        
         return user
 
 class UserUpdateForm(forms.ModelForm):
