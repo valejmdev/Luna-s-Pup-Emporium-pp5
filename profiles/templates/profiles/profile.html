@@ -1,14 +1,22 @@
 {% extends "store/base.html" %}
 {% load custom_filters %}
+
 {% block content %}
 <div class="container mt-5">
     <div class="content-section">
         <div class="media">
             <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-                {% if user.profile.bio %}
-                    <p class="text-secondary">{{ user.profile.bio }}</p>
+                <!-- Display Username and Email -->
+                <h2 class="account-heading"><strong>Username:</strong> {{ user.username }}</h2>
+                <p class="text-secondary"><strong>Email:</strong> {{ user.email }}</p>
+                
+                <!-- Display Additional Profile Information -->
+                {% if user_profile.address %}
+                    <p><strong>Address:</strong> {{ user_profile.address }}</p>
+                {% endif %}
+                
+                {% if user_profile.phone_number %}
+                    <p><strong>Phone Number:</strong> {{ user_profile.phone_number }}</p>
                 {% endif %}
             </div>
         </div>
@@ -40,11 +48,30 @@
             <div class="form-group">
                 <button class="btn btn-outline-info btn-spacing" type="submit" name="update">Update</button>
                 <button class="btn btn-outline-danger btn-spacing" type="submit" name="delete" onclick="return confirmDelete();">Delete Profile</button>
-                <a href=" {% url 'profiles:profile' user.username %} " class="btn btn-secondary btn-spacing">Cancel</a>
+                <a href="{% url 'profiles:profile' user.username %}" class="btn btn-secondary btn-spacing">Cancel</a>
             </div>
         </form>
         {% else %}
         <a href="?edit=true" class="btn btn-outline-primary">Edit Profile</a>
+        {% endif %}
+    </div>
+
+    <!-- Display Current and Past Orders (Placeholder for Future Logic) -->
+    <div class="content-section mt-5">
+        <h3>Your Orders</h3>
+        {% if user.orders.exists %}
+            <ul class="list-group">
+                {% for order in user.orders.all %}
+                <li class="list-group-item">
+                    <h5>Order #{{ order.id }} - {{ order.status }}</h5>
+                    <p><strong>Placed on:</strong> {{ order.placed_at|date:"F j, Y" }}</p>
+                    <p><strong>Total:</strong> ${{ order.total|floatformat:2 }}</p>
+                    <a href="{% url 'store:order_detail' order.id %}" class="btn btn-sm btn-info">View Details</a>
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted">You haven't placed any orders yet.</p>
         {% endif %}
     </div>
 </div>
