@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from .models import Category, Product
+from .models import Category, Product, FAQ
 from django.db.models import Q, Avg
 
 def product_list(request, category_slug=None):
@@ -55,7 +55,8 @@ def index(request):
     return render(request, 'store/index.html')
 
 def faq(request):
-    return render(request, 'store/faq.html')
+    faqs = FAQ.objects.all().order_by('category')
+    return render(request, 'store/faq.html', {'faqs': faqs})
 
 def about_us(request):
     return render(request, 'store/about_us.html')
