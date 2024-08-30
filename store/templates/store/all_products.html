@@ -3,5 +3,22 @@
 {% block content %}
 <h1>All Products</h1>
 
+<form method="get" action="{% url 'store:all_products' %}">
+    <label for="sort_by">Sort by:</label>
+    <select name="sort_by" id="sort_by">
+        <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Name</option>
+        <option value="price" {% if sort_by == 'price' %}selected{% endif %}>Price</option>
+        <option value="rating" {% if sort_by == 'rating' %}selected{% endif %}>Rating</option>
+    </select>
+
+    <label for="sort_order">Order:</label>
+    <select name="sort_order" id="sort_order">
+        <option value="asc" {% if sort_order == 'asc' %}selected{% endif %}>Ascending</option>
+        <option value="desc" {% if sort_order == 'desc' %}selected{% endif %}>Descending</option>
+    </select>
+
+    <button type="submit">Apply</button>
+</form>
+
 {% include 'store/_product_list_item.html' %}
 {% endblock %}
