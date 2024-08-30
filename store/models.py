@@ -51,3 +51,18 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review for {self.product.name} by {self.user.username}"
+    
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=255)
+    answer = models.TextField()
+    category = models.CharField(max_length=100, choices=(
+        ('General', 'General'),
+        ('Product-Specific', 'Product-Specific'),
+        ('Order and Shipping', 'Order and Shipping'),
+        ('Returns and Exchanges', 'Returns and Exchanges'),
+        ('Care and Maintenance', 'Care and Maintenance'),
+    ))
+
+    def __str__(self):
+        return self.question
