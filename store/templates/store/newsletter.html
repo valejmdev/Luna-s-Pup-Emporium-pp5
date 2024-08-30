@@ -3,13 +3,83 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Subscribe to Our Newsletter</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+
+    <!-- Introduction Section -->
+    <div class="mb-4">
+        <p>Stay up-to-date with the latest products, special offers, and helpful tips for your furry friends. Our newsletter is packed with exclusive content and deals that you won't want to miss!</p>
+    </div>
+
+    <!-- Benefits Section -->
+    <div class="mb-4">
+        <h3>Why Subscribe?</h3>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <strong>Exclusive Discounts:</strong> Get access to special discounts and promotions available only to our subscribers.
+            </li>
+            <li class="list-group-item">
+                <strong>Product Launches:</strong> Be the first to know about our new product launches and restocks.
+            </li>
+            <li class="list-group-item">
+                <strong>Pet Care Tips:</strong> Receive expert advice on pet care, training, and more.
+            </li>
+            <li class="list-group-item">
+                <strong>Monthly Giveaways:</strong> Participate in our monthly giveaways and win exciting prizes for your dog.
+            </li>
+        </ul>
+    </div>
+
+    <!-- Subscription Form -->
+    <div class="mb-4">
+        <h3>Subscribe Now</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+    </div>
+
+    <!-- Testimonials Section -->
+    <div class="mb-4">
+        <h3>What Our Subscribers Say</h3>
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">"I love getting the newsletter every month! The discounts are great, and the pet care tips have been so helpful." - <strong>Sarah M.</strong></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">"My dog is always excited to see what new toys are featured. The giveaways are an added bonus!" - <strong>John D.</strong></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">"This newsletter is a must-have for any dog owner. It's informative and fun!" - <strong>Emily R.</strong></p>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-primary">Subscribe</button>
-    </form>
+    </div>
+
+    <!-- Featured Past Newsletters or Articles -->
+    <div class="mb-4">
+        <h3>Featured Content</h3>
+        <div class="list-group">
+            <a href="{% url 'store:article_detail' 'summer-safety-tips' %}" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Summer Safety Tips for Your Dog</h5>
+                <p class="mb-1">Learn how to keep your dog cool and safe during the hot summer months.</p>
+            </a>
+            <a href="{% url 'store:article_detail' 'top-dog-toys-2024' %}" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Top 10 Dog Toys of 2024</h5>
+                <p class="mb-1">Check out the most popular toys that dogs and their owners love this year.</p>
+            </a>
+            <a href="{% url 'store:article_detail' 'eco-friendly-dog-beds' %}" class="list-group-item list-group-item-action">
+                <h5 class="mb-1">Introducing Our New Eco-Friendly Dog Beds</h5>
+                <p class="mb-1">Discover our latest range of eco-friendly dog beds, perfect for sustainable living.</p>
+            </a>
+        </div>
+    </div>
 </div>
 {% endblock %}
