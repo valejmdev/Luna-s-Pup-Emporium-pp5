@@ -19,8 +19,13 @@ def profile(request, username):
         u_form = UserUpdateForm(request.POST, instance=user)
         if 'update' in request.POST and u_form.is_valid():
             u_form.save()
+            # Update the UserProfile fields
+            user_profile.address = request.POST.get('address')
+            user_profile.phone_number = request.POST.get('phone_number')
+            user_profile.save()
+            
             messages.success(request, 'Your profile has been updated!')
-            return redirect('profiles:profile', username=user.username)  # Corrected here
+            return redirect('profiles:profile', username=user.username)
 
         if 'delete' in request.POST:
             user.delete()
@@ -28,7 +33,6 @@ def profile(request, username):
             return redirect('home')
 
     else:
-        # Ensure the form is populated with existing data
         u_form = UserUpdateForm(
             instance=user,
             initial={
@@ -42,6 +46,7 @@ def profile(request, username):
     context = {
         'user': user,
         'u_form': u_form,
+        'user_profile': user_profile,  # Ensure this is passed to the template
         'is_edit_mode': is_edit_mode
     }
 
