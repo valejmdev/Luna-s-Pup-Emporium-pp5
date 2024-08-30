@@ -31,12 +31,6 @@ def all_products(request):
     """A view to show all products, including sorting queries"""
 
     products = Product.objects.all()
-    
-    # Calculate sale price and average rating
-    for product in products:
-        product.sale_price = product.get_sale_price()
-        product.avg_rating = product.average_rating()
-        print(f"Product: {product.name}, Price: {product.price}, Sale Price: {product.sale_price}")
 
     # Get sorting parameters from GET request
     sort_by = request.GET.get('sort_by', 'name')
@@ -59,6 +53,12 @@ def all_products(request):
         else:
             products = products.order_by('name')
 
+    # Calculate sale price and average rating
+    for product in products:
+        product.sale_price = product.get_sale_price()
+        product.avg_rating = product.average_rating()
+        print(f"Product: {product.name}, Price: {product.price}, Sale Price: {product.sale_price}")
+    
     context = {
         'products': products,
         'sort_by': sort_by,
