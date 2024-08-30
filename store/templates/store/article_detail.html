@@ -1,0 +1,18 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>{{ article.title }}</h1>
+    <p>{{ article.introduction }}</p>
+
+    <div class="content">
+        <ul>
+            {% for item in article.content %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <p><strong>Conclusion:</strong> {{ article.conclusion }}</p>
+</div>
+{% endblock %}
