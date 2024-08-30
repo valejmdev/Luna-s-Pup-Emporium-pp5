@@ -10,5 +10,8 @@ def cart_item_count(request):
 
 def cart_processor(request):
     cart = get_or_create_cart(request.user)
-    cart_items = CartItem.objects.filter(cart=cart)
+    if cart is None:
+        cart_items = []
+    else:
+        cart_items = CartItem.objects.filter(cart=cart)
     return {'cart_items': cart_items}
