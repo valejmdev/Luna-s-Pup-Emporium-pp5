@@ -3,6 +3,25 @@
 {% block content %}
 <div class="container mt-4">
     <h1>Contact Us</h1>
+    
+    <!-- Additional Content: Why They Should Contact Us -->
+    <p>
+        At <strong>Luna’s Pup Emporium</strong>, we care about pets and their owners. Whether you have questions about our products, need help finding the right item for your furry friend, or simply want to share your feedback, we’re here to help!
+    </p>
+    <p>
+        Why should you contact us?
+    </p>
+    <ul>
+        <li><strong>Product Inquiries:</strong> Learn more about the quality, ingredients, or sizing of our products.</li>
+        <li><strong>Order Assistance:</strong> Need help with your order? We can assist with tracking, exchanges, or any issues you may have.</li>
+        <li><strong>Customer Support:</strong> If you have any concerns or feedback, we’re here to listen and improve your experience.</li>
+        <li><strong>Share Your Pet's Story:</strong> We love hearing about your pets! Feel free to share your furry friend's story with us.</li>
+    </ul>
+    <p>
+        We look forward to hearing from you. Please fill out the form below and we’ll get back to you as soon as possible!
+    </p>
+    
+    <!-- Contact Form -->
     <form method="post">
         {% csrf_token %}
         <div class="form-group">
@@ -15,7 +34,7 @@
         </div>
         <div class="form-group">
             <label for="message">Message</label>
-            <textarea class="form-control" id="message" rows="3"></textarea>
+            <textarea class="form-control" id="message" rows="3" placeholder="How can we help?"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Send</button>
     </form>
