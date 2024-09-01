@@ -1,7 +1,12 @@
 {% extends "store/base.html" %}
 
 {% block content %}
+<h1>Checkout</h1>
 
-<p>this is the checkout</p>
+<form action="{% url 'checkout:checkout' %}" method="POST">
+    {% csrf_token %}
+    {{ order_form.as_p }}
+    <button type="submit">Proceed to Payment</button>
+</form>
 
 {% endblock %}
