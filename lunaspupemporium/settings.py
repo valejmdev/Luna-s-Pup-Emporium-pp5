@@ -187,6 +187,14 @@ STATICFILES_DIRS = [
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+# Stripe Settings
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
+STRIPE_CURRENCY = os.getenv('STRIPE_CURRENCY', 'usd')
+FREE_DELIVERY_THRESHOLD = 50.00 
+STANDARD_DELIVERY_PERCENTAGE = 10
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
