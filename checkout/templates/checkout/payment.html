@@ -1,0 +1,81 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<h1>Complete Your Order</h1>
+<form id="payment-form" action="{% url 'checkout:checkout' %}" method="POST">
+    {% csrf_token %}
+    {{ order_form.as_p }}
+    <div id="card-element">
+        <!-- Stripe element will be inserted here -->
+    </div>
+    <div id="card-errors" role="alert"></div>
+    <button id="pay-now">Pay Now</button> <!-- Renamed the button ID -->
+</form>
+
+<style>
+    /* Add any CSS styles needed */
+</style>
+
+<!-- Load Stripe.js before your custom JavaScript -->
+<script src="https://js.stripe.com/v3/"></script>
+
+<script type="text/javascript">
+    var stripe = Stripe('{{ stripe_public_key }}');
+    var elements = stripe.elements();
+    
+    var style = {
+        base: {
+            color: '#32325d',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+        },
+        invalid: {
+            color: '#fa755a',
+            iconColor: '#fa755a'
+        }
+    };
+
+    var card = elements.create('card', {style: style});
+    card.mount('#card-element');
+
+    card.addEventListener('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    var form = document.getElementById('payment-form');
+    var submitButton = document.getElementById('pay-now'); // Updated to match the new ID
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Disable the submit button to prevent multiple submissions
+        submitButton.disabled = true;
+
+        stripe.confirmCardPayment("{{ client_secret }}", {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: document.querySelector('input[name=full_name]').value,
+                }
+            }
+        }).then(function(result) {
+            if (result.error) {
+                console.error(result.error.message);
+                // Re-enable the submit button if there's an error
+                submitButton.disabled = false;
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit(); // Submit the form if payment succeeds
+                }
+            }
+        });
+    });
+</script>
+
+{% endblock %}
