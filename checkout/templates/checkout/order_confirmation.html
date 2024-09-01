@@ -1,3 +1,17 @@
 {% extends "store/base.html" %}
 
 {% block content %}
+<h1>Order Confirmation</h1>
+
+<p>Thank you for your order! Your order number is <strong>{{ order.order_number }}</strong>.</p>
+<p>We will send you an email confirmation shortly.</p>
+
+<h2>Order Details</h2>
+<ul>
+    {% for line_item in order.orderlineitem_set.all %}
+        <li>{{ line_item.product.name }} - {{ line_item.quantity }} @ {{ line_item.lineitem_total }}</li>
+    {% endfor %}
+</ul>
+
+<p>Total: {{ order.grand_total }}</p>
+{% endblock %}
