@@ -18,14 +18,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include  
+from checkout import views as checkout_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls', namespace='store')),
     path('cart/', include('cart.urls', namespace='cart')),
-    path('checkout/', include('checkout.urls', namespace='checkout')),
     path('profiles/', include('profiles.urls', namespace='profiles')),
     path('accounts/', include('allauth.urls')), 
+    path('checkout/', include('checkout.urls', namespace='checkout')),
+    path('webhook/', checkout_views.stripe_webhook, name='stripe_webhook'),
 ]
 
 if settings.DEBUG:
