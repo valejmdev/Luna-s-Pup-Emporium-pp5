@@ -57,7 +57,6 @@ def all_products(request):
     for product in products:
         product.sale_price = product.get_sale_price()
         product.avg_rating = product.average_rating()
-        print(f"Product: {product.name}, Price: {product.price}, Sale Price: {product.sale_price}")
     
     context = {
         'products': products,
