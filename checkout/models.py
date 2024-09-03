@@ -1,10 +1,15 @@
+from django.contrib.auth import get_user_model
 import uuid
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from store.models import Product 
+from store.models import Product
+
+# Get the user model used by Django
+User = get_user_model()
 
 class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
     order_number = models.CharField(max_length=32, null=False, editable=False, unique=True)
     full_name = models.CharField(max_length=50, null=True, blank=True, default='Unknown')
     email = models.EmailField(max_length=254, null=True, blank=True, default='default@example.com')
@@ -19,7 +24,6 @@ class Order(models.Model):
     delivery_cost = models.DecimalField(max_digits=6, decimal_places=2, null=False, default=0)
     order_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
     grand_total = models.DecimalField(max_digits=10, decimal_places=2, null=False, default=0)
-
 
     def _generate_order_number(self):
         """Generate a random, unique order number using UUID"""
@@ -41,10 +45,8 @@ class Order(models.Model):
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
 
-
     def __str__(self):
-        return self.order_number
-
+        return f"Order {self.id} - {self.user.username if self.user else 'Guest'}"
 
 class OrderLineItem(models.Model):
     order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
