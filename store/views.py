@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Category, Product, FAQ
 from django.db.models import Q, Avg
+from checkout.models import Order
 
 def product_list(request, category_slug=None):
     if category_slug:
@@ -147,3 +148,8 @@ def article_detail(request, slug):
         return render(request, 'store/404.html')
 
     return render(request, 'store/article_detail.html', {'article': article})
+
+
+def order_detail(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    return render(request, 'store/order_detail.html', {'order': order})
