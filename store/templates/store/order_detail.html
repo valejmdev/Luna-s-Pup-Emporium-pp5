@@ -1,0 +1,24 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Order #{{ order.order_number }}</h2>
+    <p><strong>Date:</strong> {{ order.date|date:"F j, Y" }}</p>
+    <p><strong>Total:</strong> ${{ order.grand_total|floatformat:2 }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+
+    <h3>Items in this order:</h3>
+    <ul class="list-group">
+        {% for item in order.lineitems.all %}
+            <li class="list-group-item">
+                <h5>{{ item.product.name }}</h5>
+                <p>Quantity: {{ item.quantity }}</p>
+                <p>Price: ${{ item.product.price|floatformat:2 }}</p>
+                <p>Total: ${{ item.lineitem_total|floatformat:2 }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'profiles:profile' user.username %}" class="btn btn-secondary mt-3">Back to Profile</a>
+</div>
+{% endblock content %}
