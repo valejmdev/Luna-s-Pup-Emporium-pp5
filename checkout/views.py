@@ -4,38 +4,35 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import stripe
-import logging
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from cart.models import Cart, CartItem
-
-logger = logging.getLogger(__name__)
+from profiles.models import UserProfile 
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 def checkout(request):
     if not request.user.is_authenticated:
         messages.error(request, "You need to be logged in to proceed to checkout.")
-        return redirect('login')  # or whatever your login URL is
+        return redirect('login')
 
     if request.method == 'POST':
         order_form = OrderForm(request.POST)
         if order_form.is_valid():
-            # Create order instance but don't save it yet
             order = order_form.save(commit=False)
             
-            # Retrieve the user's cart
             try:
                 cart = Cart.objects.get(user=request.user)
                 cart_items = CartItem.objects.filter(cart=cart)
             except Cart.DoesNotExist:
                 cart_items = []
 
-            # Save the order instance
+            # Link the order to the logged-in user
+            order.user = request.user  # This ensures the order is tied to the logged-in user
+
             order.save()
 
-            # Create order line items
             for item in cart_items:
                 OrderLineItem.objects.create(
                     order=order,
@@ -44,19 +41,14 @@ def checkout(request):
                     lineitem_total=item.total_price,
                 )
             
-            # Update the order totals
             order.update_total()
 
-            # Calculate the total amount in cents for Stripe
             stripe_total = int(order.grand_total * 100)
-            logger.debug(f'Order grand total (cents): {stripe_total}')
 
-            MINIMUM_AMOUNT_CENTS = 50
-            if stripe_total < MINIMUM_AMOUNT_CENTS:
-                messages.error(request, f"The order total is too small for payment. Minimum amount is {MINIMUM_AMOUNT_CENTS / 100} USD.")
+            if stripe_total < 50:
+                messages.error(request, "The order total is too small for payment.")
                 return redirect('checkout')
 
-            # Create a PaymentIntent
             intent = stripe.PaymentIntent.create(
                 amount=stripe_total,
                 currency=settings.STRIPE_CURRENCY,
@@ -72,18 +64,16 @@ def checkout(request):
 
             return render(request, 'checkout/payment.html', context)
         else:
-            messages.error(request, "There was an error with your form. Please double-check your information.")
+            messages.error(request, "There was an error with your form.")
     else:
         order_form = OrderForm()
 
-        # Retrieve the user's cart
         try:
             cart = Cart.objects.get(user=request.user)
             cart_items = CartItem.objects.filter(cart=cart)
         except Cart.DoesNotExist:
             cart_items = []
 
-        # Calculate the total price from cart items
         total = sum(item.total_price for item in cart_items)
 
         context = {
@@ -132,7 +122,8 @@ def handle_successful_payment(payment_intent):
         order.status = 'Paid'
         order.save()
 
-        return redirect('order_confirmation', order_number=order_id)
+        # Send order confirmation email if needed
+        # send_order_confirmation_email(order)
 
     except Order.DoesNotExist:
         pass
@@ -150,13 +141,16 @@ def handle_failed_payment(payment_intent):
 
 def order_confirmation(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
-    
-    if request.user.is_authenticated and order.user != request.user:
-        messages.error(request, "You do not have permission to view this order.")
-        return redirect('home') 
-    
+
+    # Ensure only the authenticated user who placed the order can view it
+    if request.user.is_authenticated:
+        if order.user != request.user:
+            messages.error(request, "You are not authorized to view this order.")
+            return redirect('store:index')
+
+    # Proceed with rendering the order confirmation
     context = {
         'order': order,
     }
-    
+
     return render(request, 'checkout/order_confirmation.html', context)
