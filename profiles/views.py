@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from .models import UserProfile  
 from .forms import UserUpdateForm
+from checkout.models import Order
+
 
 @login_required
 def profile(request, username):
@@ -41,12 +44,16 @@ def profile(request, username):
             }
         )
 
+    # Fetch all orders for the logged-in user
+    user_orders = Order.objects.filter(user=user)
+
     is_edit_mode = request.GET.get('edit') == 'true'
 
     context = {
         'user': user,
         'u_form': u_form,
-        'user_profile': user_profile,  # Ensure this is passed to the template
+        'user_profile': user_profile,
+        'user_orders': user_orders, 
         'is_edit_mode': is_edit_mode
     }
 
