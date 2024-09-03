@@ -6,11 +6,9 @@
     <div class="content-section">
         <div class="media">
             <div class="media-body">
-                <!-- Display Username and Email -->
                 <h2 class="account-heading"><strong>Username:</strong> {{ user.username }}</h2>
                 <p class="text-secondary"><strong>Email:</strong> {{ user.email }}</p>
                 
-                <!-- Display Additional Profile Information -->
                 {% if user_profile.address %}
                     <p><strong>Address:</strong> {{ user_profile.address }}</p>
                 {% endif %}
@@ -56,16 +54,15 @@
         {% endif %}
     </div>
 
-    <!-- Display Current and Past Orders (Placeholder for Future Logic) -->
     <div class="content-section mt-5">
         <h3>Your Orders</h3>
-        {% if user.orders.exists %}
+        {% if user_orders %}
             <ul class="list-group">
-                {% for order in user.orders.all %}
+                {% for order in user_orders %}
                 <li class="list-group-item">
-                    <h5>Order #{{ order.id }} - {{ order.status }}</h5>
-                    <p><strong>Placed on:</strong> {{ order.placed_at|date:"F j, Y" }}</p>
-                    <p><strong>Total:</strong> ${{ order.total|floatformat:2 }}</p>
+                    <h5>Order #{{ order.order_number }} - {{ order.status }}</h5>
+                    <p><strong>Placed on:</strong> {{ order.date|date:"F j, Y" }}</p>
+                    <p><strong>Total:</strong> ${{ order.grand_total|floatformat:2 }}</p>
                     <a href="{% url 'store:order_detail' order.id %}" class="btn btn-sm btn-info">View Details</a>
                 </li>
                 {% endfor %}
