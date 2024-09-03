@@ -49,7 +49,7 @@
     });
 
     var form = document.getElementById('payment-form');
-    var submitButton = document.getElementById('pay-now'); // Updated to match the new ID
+    var submitButton = document.getElementById('pay-now'); 
 
     form.addEventListener('submit', function(event) {
         event.preventDefault();
@@ -71,7 +71,8 @@
                 submitButton.disabled = false;
             } else {
                 if (result.paymentIntent.status === 'succeeded') {
-                    form.submit(); // Submit the form if payment succeeds
+                    // Redirect to the order confirmation page
+                    window.location.href = "{% url 'checkout:order_confirmation' order.order_number %}";
                 }
             }
         });
