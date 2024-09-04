@@ -17,7 +17,14 @@ main {
 }
 
 /* Existing Styles for Headings, Lists, etc. */
-/* ... */
+div#accordion {
+    padding-bottom: 20px;
+}
+
+.mt-5, .my-5 {
+    margin-top: 3rem !important;
+    margin-bottom: 3rem !important;
+}
 
 /* Background and Text Colors */
 .bg-steel {
@@ -26,6 +33,7 @@ main {
 
 .site-header .navbar-nav .nav-link {
     color: #fafafa;
+    padding: 10px 15px; /* Increased padding for better spacing */
 }
 
 .site-header .navbar-nav .nav-link:hover {
@@ -38,6 +46,50 @@ main {
 
 .sidebar-link-color{
     color:#007356 !important;
+}
+
+/* Navbar adjustments */
+.site-header .navbar {
+    padding: 0.8rem 1rem;
+}
+
+.site-header .navbar-nav .nav-link {
+    color: #fafafa;
+    padding: 10px 15px;
+}
+
+.site-header .navbar-nav .nav-link:hover {
+    color: #B1A8B9;
+}
+
+/* Search bar styles */
+.site-header .bg-steel {
+    background-color: #4B4453;
+}
+
+.site-header .bg-steel form {
+    width: 100%;
+    max-width: 600px; /* Limit the width of the search bar */
+    margin: 0 auto;
+}
+
+.site-header .form-control {
+    width: 75%; /* Set the search input to take 75% of the container */
+}
+
+.site-header .btn {
+    width: 20%; /* Set the search button to take 20% of the container */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .site-header .form-control {
+        width: 70%; /* Adjust search input width for smaller screens */
+    }
+
+    .site-header .btn {
+        width: 25%; /* Adjust button width for smaller screens */
+    }
 }
 
 /* Alert Styles */
@@ -67,6 +119,47 @@ main {
     z-index: 1000;
 }
 
+.card-img-top {
+    object-fit: cover;
+    height: 200px; /* Adjust this to the desired height for images */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (max-width: 576px) {
+    .card-img-top {
+        height: 150px; /* Smaller height for mobile */
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-md-4 {
+        max-width: 25%; /* Allow for 4 items per row on large screens */
+    }
+}
+
+/* Adjust the logout button */
+.navbar-nav .nav-link.btn {
+    padding: 0 15px; /* Apply same padding as other links */
+    vertical-align: middle; /* Ensure the button aligns vertically */
+    color: #fafafa; /* Ensure the text color matches other links */
+}
+
+.navbar-nav .nav-link.btn:hover {
+    color: #B1A8B9; /* Apply hover effect similar to other nav items */
+    text-decoration: none; /* Remove underline on hover */
+}
+
+/* Ensure the form doesn't affect the layout */
+.navbar-nav form {
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
 
 /*Stripe Rules*/
 #card-element {
@@ -103,17 +196,90 @@ main {
     background-color: #fefde5 !important;
 }
 
+/* Container for product details */
+.product-detail-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    gap: 30px; /* Space between image and details */
+}
+
+.product-image img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    align-items: center;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info h1 {
+    margin-bottom: 20px;
+    color: #4B4453;
+}
+
+.product-info p {
+    margin-bottom: 15px;
+    color: #4B4453;
+}
+
+.product-info .sale-price {
+    color: #E74C3C;
+    font-weight: bold;
+}
+
+.product-info .btn {
+    background-color: #007356;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product-info .btn:hover {
+    background-color: #005f46;
+}
+
+.product-info .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007356;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.product-info .back-link:hover {
+    text-decoration: underline;
+}
+
+/* Additional images styles */
+.additional-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.additional-images img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
 
 /* Footer CSS Rules */
-
-
 .footer {
     background-color: #4B4453;
     color: #B1A8B9;
     text-align: center;
     padding: 30px 0;
     flex-shrink: 0;
-    line-height: 1.3;
+    line-height: 1.5; /* Increase line-height for better spacing */
 }
 
 footer {
@@ -126,6 +292,13 @@ footer a {
     color: #06e0b1;
     text-decoration: none;
     font-size: large;
+    display: block; /* Ensure each link occupies its own line */
+    margin-bottom: 10px; /* Add spacing between links */
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
 }
 
 .footer-link-space {
@@ -135,6 +308,7 @@ footer a {
 .footer-head {
     color: #06e0b1 !important;
     font-size: x-large;
+    margin-bottom: 20px; /* Add space below the heading */
 }
 
 footer a:hover,
@@ -151,4 +325,26 @@ footer .form-control {
     resize: none;
     color: #d1d2d2;
     padding: 0.7em 1em;
+}
+
+ul.footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    justify-content: center;
+}
+
+footer .nav-item {
+    margin: 0 10px; /* Add spacing between social media icons */
+}
+
+footer .nav-item a {
+    color: #06e0b1;
+    font-size: 24px; /* Increase size of social media icons */
+}
+
+footer .nav-item a:hover {
+    color: #671DE7; /* Change color on hover */
 }
