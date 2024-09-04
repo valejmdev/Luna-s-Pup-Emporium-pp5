@@ -1,18 +1,32 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-<h1>
+<div class="container mt-5">
+    <h1 class="mb-4">
+        {% if category_slug %}
+            Products in "{{ category_slug | title }}"
+        {% else %}
+            All Products
+        {% endif %}
+    </h1>
+
+    <div class="row">
+        {% for product in products %}
+        <div class="col-12 col-sm-6 col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ product.featured_image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">${{ product.price|floatformat:2 }}</p>
+                    <a href="{% url 'store:product_detail' product.id %}" class="btn btn-info btn-block">View Product</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
     {% if category_slug %}
-        Products in "{{ category_slug | title }}"
-    {% else %}
-        All Products
+        <a href="{% url 'store:all_products' %}" class="btn btn-secondary mt-4">Back to All Products</a>
     {% endif %}
-</h1>
-
-<!-- Include the reusable product listing template -->
-{% include 'store/_product_list_item.html' %}
-
-{% if category_slug %}
-    <a href="{% url 'store:all_products' %}">Back to all products</a>
-{% endif %}
+</div>
 {% endblock %}
