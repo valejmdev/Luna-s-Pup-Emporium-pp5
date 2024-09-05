@@ -2,21 +2,103 @@
 
 {% block content %}
 
-<h1>Your Shopping Cart</h1>
+<div class="container mt-5">
+    <h1 class="mb-4">Your Shopping Cart</h1>
 
-{% if cart_items %}
-    <ul>
-        {% for item in cart_items %}
-            <li>
-                {{ item.product.name }} - {{ item.quantity }} x ${{ item.product.price }} = ${{ item.total_price|floatformat:2 }}
-                <a href="{% url 'cart:cart_remove' item.product.id %}">Remove</a>
-            </li>
-        {% endfor %}
-    </ul>
-    <p>Total: ${{ total_price|floatformat:2 }}</p>
-    <a href="{% url 'checkout:checkout' %}">Proceed to Checkout</a>
-{% else %}
+    {% if cart_items %}
+    <form method="post" action="{% url 'cart:update_cart' %}" id="cart-form">
+        {% csrf_token %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Product Quantity</th>
+                    <th>Product Price</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart_items %}
+                <tr data-product-id="{{ item.product.id }}">
+                    <td>
+                        <img src="{{ item.product.featured_image.url }}" alt="{{ item.product.name }}" class="img-fluid"
+                            style="max-width: 100px;">
+                    </td>
+                    <td>{{ item.product.name }}</td>
+                    <td>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    data-product-id="{{ item.product.id }}" data-change="-1"
+                                    onclick="updateQuantity(this)">-</button>
+                            </div>
+                            <input type="text" class="form-control text-center" name="quantity_{{ item.product.id }}"
+                                value="{{ item.quantity }}" readonly>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button"
+                                    data-product-id="{{ item.product.id }}" data-change="1"
+                                    onclick="updateQuantity(this)">+</button>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${{ item.product.price|floatformat:2 }}</td>
+                    <td class="item-total-price">${{ item.total_price|floatformat:2 }}</td>
+                    <td>
+                        <a href="{% url 'cart:cart_remove' item.product.id %}" class="btn btn-danger btn-sm">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="text-right mt-4">
+            <h4>Total: ${{ total_price|floatformat:2 }}</h4>
+            <button type="submit" class="btn btn-primary">Update Cart</button>
+            <a href="{% url 'checkout:checkout' %}" class="btn btn-primary ml-2">Proceed to Checkout</a>
+        </div>
+    </form>
+
+    {% else %}
     <p>Your cart is empty.</p>
-{% endif %}
+    {% endif %}
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('form').on('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            $.ajax({
+                url: $(this).attr('action'), // Get the action URL from the form
+                method: 'POST',
+                data: $(this).serialize(), // Serialize the form data
+                headers: {
+                    'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]')
+                        .val() // Add CSRF token
+                },
+                success: function () {
+                    // Reload the page after successfully updating the cart
+                    location.reload();
+                },
+                error: function () {
+                    console.error('An error occurred while updating the cart.');
+                }
+            });
+        });
+
+        window.updateQuantity = function (button) {
+            const productId = button.getAttribute('data-product-id');
+            const change = parseInt(button.getAttribute('data-change'), 10);
+            const quantityInput = document.querySelector(`input[name="quantity_${productId}"]`);
+            let currentQuantity = parseInt(quantityInput.value, 10);
+            if (isNaN(currentQuantity)) currentQuantity = 0;
+            currentQuantity += change;
+            if (currentQuantity < 1) currentQuantity = 1; // Prevent quantity from going below 1
+            quantityInput.value = currentQuantity;
+        }
+    });
+</script>
 
 {% endblock %}
