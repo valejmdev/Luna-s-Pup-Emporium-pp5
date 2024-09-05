@@ -1,17 +1,32 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-<h1>Order Confirmation</h1>
+<div class="container mt-5">
+    <!-- Order Confirmation Header -->
+    <div class="text-center mb-4">
+        <h1 class="display-4">Order Confirmation</h1>
+        <p class="lead">Thank you for your order! Your order number is <strong>{{ order.order_number }}</strong>.</p>
+        <p>We will send you an email confirmation shortly.</p>
+    </div>
 
-<p>Thank you for your order! Your order number is <strong>{{ order.order_number }}</strong>.</p>
-<p>We will send you an email confirmation shortly.</p>
-
-<h2>Order Details</h2>
-<ul>
-    {% for line_item in order.orderlineitem_set.all %}
-        <li>{{ line_item.product.name }} - {{ line_item.quantity }} @ {{ line_item.lineitem_total }}</li>
-    {% endfor %}
-</ul>
-
-<p>Total: ${{ order.grand_total }}</p>
+    <!-- Order Details Section -->
+    <section class="order-details mb-5">
+        <h2 class="mb-4">Order Details</h2>
+        <div class="card">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for line_item in order.orderlineitem_set.all %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ line_item.product.name }}
+                        <span>{{ line_item.quantity }} @ ${{ line_item.lineitem_total|floatformat:2 }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="mt-3 text-right">
+                    <h4 class="font-weight-bold">Total: ${{ order.grand_total|floatformat:2 }}</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
 {% endblock %}
