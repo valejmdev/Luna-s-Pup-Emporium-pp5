@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Alegreya+Sans:300);
+
 /* Basic HTML and Body Styles */
 html, body {
     height: 100%;
@@ -8,8 +9,8 @@ html, body {
 }
 
 body {
-    background-color: #fafafa;
-    color: #4B4453;
+    background-color: #fafafa; /* Off-white background */
+    color: #4B4453; /* Dark grey text for contrast */
 }
 
 main {
@@ -28,24 +29,24 @@ div#accordion {
 
 /* Background and Text Colors */
 .bg-steel {
-    background-color: #4B4453;
+    background-color: #3a4b40; /* Dark green-grey background */
 }
 
 .site-header .navbar-nav .nav-link {
-    color: #fafafa;
+    color: #fafafa; /* Off-white text for links */
     padding: 10px 15px; /* Increased padding for better spacing */
 }
 
 .site-header .navbar-nav .nav-link:hover {
-    color: #B1A8B9;
+    color: #9cb0a3; /* Light green-grey on hover */
 }
 
 .site-header .navbar-nav .nav-link.active {
     font-weight: 500;
 }
 
-.sidebar-link-color{
-    color:#007356 !important;
+.sidebar-link-color {
+    color: #13a366 !important; /* Teal color for sidebar links */
 }
 
 /* Navbar adjustments */
@@ -54,17 +55,17 @@ div#accordion {
 }
 
 .site-header .navbar-nav .nav-link {
-    color: #fafafa;
+    color: #fafafa !important;
     padding: 10px 15px;
 }
 
 .site-header .navbar-nav .nav-link:hover {
-    color: #B1A8B9;
+    color: #9cb0a3;
 }
 
 /* Search bar styles */
 .site-header .bg-steel {
-    background-color: #4B4453;
+    background-color: #3a4b40;
 }
 
 .site-header .bg-steel form {
@@ -78,7 +79,13 @@ div#accordion {
 }
 
 .site-header .btn {
-    width: 20%; /* Set the search button to take 20% of the container */
+    background-color: #00a3d3; /* Blue background for button */
+    border: none;
+    color: #fff;
+}
+
+.site-header .btn:hover {
+    background-color: #006e9c; /* Darker blue on hover */
 }
 
 /* Mobile adjustments */
@@ -138,20 +145,19 @@ div#accordion {
 
 @media (min-width: 1200px) {
     .col-md-4 {
-        max-width: 25%; /* Allow for 4 items per row on large screens */
+        max-width: 25%; 
     }
 }
 
 /* Adjust the logout button */
 .navbar-nav .nav-link.btn {
-    padding: 0 15px; /* Apply same padding as other links */
-    vertical-align: middle; /* Ensure the button aligns vertically */
-    color: #fafafa; /* Ensure the text color matches other links */
+    vertical-align: middle; 
+    color: #fafafa; 
 }
 
 .navbar-nav .nav-link.btn:hover {
-    color: #B1A8B9; /* Apply hover effect similar to other nav items */
-    text-decoration: none; /* Remove underline on hover */
+    color: #9cb0a3; 
+    text-decoration: none; 
 }
 
 /* Ensure the form doesn't affect the layout */
@@ -161,7 +167,16 @@ div#accordion {
     display: inline;
 }
 
-/*Stripe Rules*/
+.blockquote-footer{
+    color: #fff !important;
+    font-size: large;
+}
+
+.footer-newsletter-text{
+    color: #fff !important;
+}
+
+/* Stripe Rules */
 #card-element {
     width: 100%;
     padding: 10px;
@@ -196,25 +211,23 @@ div#accordion {
     background-color: #fefde5 !important;
 }
 
-/* Container for product details */
+/* Product Detail Container Styles */
 .product-detail-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
     margin-top: 20px;
-    gap: 30px; /* Space between image and details */
 }
 
+/* Product Image */
 .product-image img {
-    max-width: 50%;
+    width: 100%;
     height: auto;
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: block;
+    margin: 0 auto;
 }
 
 .product-info {
-    flex: 1;
+    padding-left: 15px;
 }
 
 .product-info h1 {
@@ -232,8 +245,9 @@ div#accordion {
     font-weight: bold;
 }
 
+/* Responsive Button */
 .product-info .btn {
-    background-color: #007356;
+    background-color: #13a366;
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -243,13 +257,13 @@ div#accordion {
 }
 
 .product-info .btn:hover {
-    background-color: #005f46;
+    background-color: #00a3d3;
 }
 
 .product-info .back-link {
     display: inline-block;
     margin-top: 20px;
-    color: #007356;
+    color: #13a366;
     text-decoration: none;
     font-weight: bold;
 }
@@ -258,24 +272,51 @@ div#accordion {
     text-decoration: underline;
 }
 
-/* Additional images styles */
-.additional-images {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+/* Additional Images */
+.additional-images img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin-bottom: 15px;
 }
 
-.additional-images img {
-    width: 150px;
-    height: auto;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .product-detail-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+
+    .product-info {
+        padding-left: 0;
+    }
+
+    .additional-images {
+        justify-content: center;
+    }
+}
+
+/* Custom Styles for Order Confirmation Page */
+.order-details .list-group-item {
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    background-color: #f9f9f9;
+}
+
+.order-details .list-group-item span {
+    font-weight: bold;
+    color: #13a366; /* Teal color for order details */
+}
+
+.order-details .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer CSS Rules */
 .footer {
-    background-color: #4B4453;
-    color: #B1A8B9;
+    background-color: #3a4b40; /* Dark green-grey background */
+    color: #9cb0a3; /* Light green-grey text */
     text-align: center;
     padding: 30px 0;
     flex-shrink: 0;
@@ -284,16 +325,20 @@ div#accordion {
 
 footer {
     padding-top: 30px;
-    background-color: #4B4453;
-    color: #B1A8B9;
+    background-color: #3a4b40;
+    color: #9cb0a3;
 }
 
 footer a {
-    color: #06e0b1;
+    color: #00a3d3; /* Blue links */
     text-decoration: none;
     font-size: large;
     display: block; /* Ensure each link occupies its own line */
     margin-bottom: 10px; /* Add spacing between links */
+}
+
+.footer-p-visibility{
+    color: #fff;
 }
 
 .row {
@@ -306,14 +351,14 @@ footer a {
 }
 
 .footer-head {
-    color: #06e0b1 !important;
+    color: #00a3d3 !important; /* Blue for footer heading */
     font-size: x-large;
     margin-bottom: 20px; /* Add space below the heading */
 }
 
 footer a:hover,
 footer a:focus {
-    color: #671DE7;
+    color: #006e9c; /* Darker blue on hover */
     text-decoration: none;
     border-bottom: 1px dotted #999;
 }
@@ -341,10 +386,10 @@ footer .nav-item {
 }
 
 footer .nav-item a {
-    color: #06e0b1;
+    color: #00a3d3; /* Blue for social media icons */
     font-size: 24px; /* Increase size of social media icons */
 }
 
 footer .nav-item a:hover {
-    color: #671DE7; /* Change color on hover */
+    color: #006e9c; /* Darker blue on hover */
 }
