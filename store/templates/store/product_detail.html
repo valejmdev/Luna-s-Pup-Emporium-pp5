@@ -1,47 +1,48 @@
 {% extends "store/base.html" %}
 {% load static %}
 {% block content %}
-<div class="product-detail-container">
-    <!-- Display Main Product Image -->
-    <div class="product-image">
-        {% if product.featured_image %}
-            <img src="{{ product.featured_image.url }}" alt="{{ product.name }}">
-        {% else %}
-            <img src="{% static 'images/default.jpg' %}" alt="default image">
-        {% endif %}
+<div class="container product-detail-container">
+    <div class="row">
+        <!-- Display Main Product Image -->
+        <div class="col-md-6 col-12 product-image">
+            {% if product.featured_image %}
+                <img src="{{ product.featured_image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <img src="{% static 'images/default.jpg' %}" alt="default image">
+            {% endif %}
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-md-6 col-12 product-info">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+
+            {% if product.on_sale %}
+                <p>Original Price: <s>${{ product.price }}</s></p>
+                <p class="sale-price">Sale Price: ${{ product.sale_price }}</p>
+            {% else %}
+                <p>Price: ${{ product.price }}</p>
+            {% endif %}
+
+            <p>Stock: {{ product.stock }}</p>
+            <p>Average Rating: {{ product.avg_rating }} / 5</p>
+
+            <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
+
+            <a href="{% url 'store:product_list' product.category.slug %}" class="back-link">Back to {{ product.category.name }}</a>
+        </div>
     </div>
 
-    <!-- Product Details -->
-    <div class="product-info">
-        <h1>{{ product.name }}</h1>
-        <p>{{ product.description }}</p>
-
-        <!-- Display Price or Sale Price -->
-        {% if product.on_sale %}
-            <p>Original Price: <s>${{ product.price }}</s></p>
-            <p class="sale-price">Sale Price: ${{ product.sale_price }}</p>
-        {% else %}
-            <p>Price: ${{ product.price }}</p>
-        {% endif %}
-
-        <p>Stock: {{ product.stock }}</p>
-        <p>Average Rating: {{ product.avg_rating }} / 5</p>
-
-        <!-- Add to Cart Form -->
-        <form action="{% url 'cart:cart_add' product.id %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Add to Cart</button>
-        </form>
-
-        <a href="{% url 'store:product_list' product.category.slug %}" class="back-link">Back to {{ product.category.name }}</a>
+    <h3 class="product-add-images-heading">Additional Images:</h3>
+    <div class="row additional-images">
+        {% for image in images %}
+            <div class="col-md-3 col-6">
+                <img src="{{ image.featured_image.url }}" alt="{{ product.name }}" class="img-fluid">
+            </div>
+        {% endfor %}
     </div>
-</div>
-
-<h3>Additional Images:</h3>
-<div class="additional-images">
-    <!-- Additional Product Images -->
-    {% for image in images %}
-        <img src="{{ image.featured_image.url }}" alt="{{ product.name }}">
-    {% endfor %}
 </div>
 {% endblock %}
