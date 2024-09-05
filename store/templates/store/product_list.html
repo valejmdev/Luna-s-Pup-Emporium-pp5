@@ -10,6 +10,14 @@
         {% endif %}
     </h1>
 
+    <form method="get" action="{% url 'store:product_list' category_slug %}" class="mb-4 form-inline">
+        <div class="form-group mr-2">
+            <label for="search_term" class="mr-2">Search:</label>
+            <input type="text" name="q" id="search_term" class="form-control mr-2" placeholder="Search products..." value="{{ request.GET.q }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
     <div class="row">
         {% for product in products %}
         <div class="col-12 col-sm-6 col-md-4 mb-4">
@@ -22,6 +30,8 @@
                 </div>
             </div>
         </div>
+        {% empty %}
+        <p>No products found.</p>
         {% endfor %}
     </div>
 
