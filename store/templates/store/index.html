@@ -1,5 +1,127 @@
 {% extends "store/base.html" %}
+
 {% block content %}
-    <h1>Welcome to My Store</h1>
-    <p>This is the homepage of your e-commerce store.</p>
-{% endblock content %}
+<div class="container mt-5">
+    <!-- Welcome Section -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <div class="hero-image"
+                style="background-image: url('{% static "images/default.jpg" %}'); height: 400px; background-size: cover; background-position: center;">
+                <h1 class="display-4 text-white pt-5">Welcome to Luna's Pup Emporium!</h1>
+                <p class="lead text-white">Your one-stop shop for premium pet products. From leashes to toys, we've got
+                    everything your furry friend needs.</p>
+                <a href="{% url 'store:all_products' %}" class="btn btn-lg btn-primary">Shop Now</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Featured Products Section -->
+    <div class="row mb-5">
+        <div class="col text-center">
+            <h2>Featured Products</h2>
+            <div class="row">
+                {% for product in featured_products %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <img src="{{ product.featured_image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+                            <p class="card-text">
+                                Price: ${{ product.sale_price }}{% if product.on_sale %}
+                                <del>${{ product.price }}</del>{% endif %}
+                            </p>
+                            <p class="card-text">
+                                Rating: {{ product.avg_rating }} / 5
+                            </p>
+                            <a href="{% url 'store:product_detail' product.id %}" class="btn btn-primary">View
+                                Product</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Promotional Banner Section -->
+    <div class="jumbotron jumbotron-fluid mt-5 text-center bg-secondary text-white">
+        <div class="container">
+            <h1 class="display-4">Special Offers!</h1>
+            <p class="lead">Get up to 30% off selected items. Don't miss out!</p>
+            <a href="{% url 'store:special_offers' %}" class="btn btn-lg btn-outline-light">Shop Special Offers</a>
+        </div>
+    </div>
+
+    <!-- New Arrivals Section -->
+    <section class="new-arrivals my-5">
+        <h2 class="mb-4">New Arrivals</h2>
+        <div class="row">
+            {% for product in new_arrivals %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <img src="{{ product.featured_image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product.name }}</h5>
+                        <p class="card-text">${{ product.price|floatformat:2 }}</p>
+                        <a href="{% url 'store:product_detail' product.id %}" class="btn btn-info btn-block">View
+                            Product</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Testimonials Section with 5-star Icons -->
+    <section class="testimonials text-center my-5">
+        <h2 class="mb-4">What Our Customers Say</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <blockquote class="blockquote">
+                    <div class="mb-2">
+                        <!-- 5-Star Rating -->
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="mb-0">"Great quality and fast shipping! My dog loves their new bed."</p>
+                    <footer class="blockquote-footer">Emily, <cite title="Source Title">Happy Customer</cite></footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4 mb-4">
+                <blockquote class="blockquote">
+                    <div class="mb-2">
+                        <!-- 5-Star Rating -->
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="mb-0">"Best harness I've ever bought. Sturdy and comfortable for my pup!"</p>
+                    <footer class="blockquote-footer">James, <cite title="Source Title">Satisfied Shopper</cite>
+                    </footer>
+                </blockquote>
+            </div>
+            <div class="col-md-4 mb-4">
+                <blockquote class="blockquote">
+                    <div class="mb-2">
+                        <!-- 5-Star Rating -->
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                        <i class="fas fa-star text-warning"></i>
+                    </div>
+                    <p class="mb-0">"Fantastic toys that keep my dog entertained for hours."</p>
+                    <footer class="blockquote-footer">Sarah, <cite title="Source Title">Regular Buyer</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
