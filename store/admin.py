@@ -3,8 +3,8 @@ from .models import Product, Category, ProductImage, Review, FAQ
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'on_sale', 'rating', 'get_sale_price')
-    list_filter = ('on_sale',)
+    list_display = ('name', 'price', 'on_sale', 'rating', 'get_sale_price', 'featured')
+    list_filter = ('on_sale', 'featured')
     search_fields = ('name', 'description')
 
 @admin.register(Category)

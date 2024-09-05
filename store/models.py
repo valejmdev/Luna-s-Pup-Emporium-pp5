@@ -20,6 +20,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     on_sale = models.BooleanField(default=False)
     rating = models.FloatField(default=0.0)
+    featured = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

@@ -10,6 +10,14 @@ def product_list(request, category_slug=None):
     else:
         products = Product.objects.all()
 
+    search_term = request.GET.get('q', '')
+
+    # Apply search filter
+    if search_term:
+        products = products.filter(
+            Q(name__icontains=search_term) | Q(description__icontains=search_term)
+        )
+
     for product in products:
         product.sale_price = product.get_sale_price()  # Calculate sale price
         product.avg_rating = product.average_rating()
@@ -29,13 +37,19 @@ def product_detail(request, product_id):
 
 # View to display all products
 def all_products(request):
-    """A view to show all products, including sorting queries"""
+    """A view to show all products, including sorting and searching queries"""
+
+    search_term = request.GET.get('q', '')
+    sort_by = request.GET.get('sort_by', 'name')
+    sort_order = request.GET.get('sort_order', 'asc')
 
     products = Product.objects.all()
 
-    # Get sorting parameters from GET request
-    sort_by = request.GET.get('sort_by', 'name')
-    sort_order = request.GET.get('sort_order', 'asc')
+    # Apply search filter
+    if search_term:
+        products = products.filter(
+            Q(name__icontains=search_term) | Q(description__icontains=search_term)
+        )
 
     # Sorting
     if sort_by == 'price':
@@ -58,11 +72,12 @@ def all_products(request):
     for product in products:
         product.sale_price = product.get_sale_price()
         product.avg_rating = product.average_rating()
-    
+
     context = {
         'products': products,
         'sort_by': sort_by,
         'sort_order': sort_order,
+        'search_term': search_term
     }
 
     return render(request, 'store/all_products.html', context)
@@ -74,7 +89,12 @@ def special_offers(request):
     return render(request, 'store/special_offers.html', {'products': products_on_sale})
 
 def index(request):
-    return render(request, 'store/index.html')
+    featured_products = Product.objects.filter(featured=True)  # Fetch featured products
+    for product in featured_products:
+        product.sale_price = product.get_sale_price()
+        product.avg_rating = product.average_rating()
+    
+    return render(request, 'store/index.html', {'featured_products': featured_products})
 
 def faq(request):
     faqs = FAQ.objects.all().order_by('category')
