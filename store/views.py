@@ -113,6 +113,9 @@ def contact_us(request):
 def terms_conditions(request):
     return render(request, 'store/terms_conditions.html')
 
+def privacy_policies(request):
+    return render(request, 'store/privacy_policies.html')
+
 def newsletter(request):
     if request.method == 'POST':
         form = NewsletterForm(request.POST)

@@ -11,6 +11,7 @@ urlpatterns = [
     path('special-offers/', views.special_offers, name='special_offers'),
     path('order/<int:order_id>/', views.order_detail, name='order_detail'),
     path('terms_conditions/', views.terms_conditions, name='terms_conditions'),
+    path('privacy_policies/', views.privacy_policies, name='privacy_policies'),
     path('faq/', views.faq, name='faq'),
     path('newsletter/', views.newsletter, name='newsletter'),
     path('articles/<slug:slug>/', views.article_detail, name='article_detail'),
