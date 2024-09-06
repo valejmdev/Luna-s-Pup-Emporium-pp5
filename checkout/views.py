@@ -4,7 +4,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 import stripe
-
+from django.contrib.auth.decorators import login_required
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from cart.models import Cart, CartItem
@@ -138,7 +138,7 @@ def handle_failed_payment(payment_intent):
     except Order.DoesNotExist:
         pass
 
-
+@login_required
 def order_confirmation(request, order_number):
     order = get_object_or_404(Order, order_number=order_number)
 
