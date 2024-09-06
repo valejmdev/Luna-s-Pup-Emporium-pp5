@@ -1,10 +1,15 @@
 {% extends "store/base.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container mt-5">
     <!-- Welcome Section -->
     <div class="row mb-5">
         <div class="col text-center">
+            <div class="hero-image" 
+                style="background-image: url({% static 'images/default.jpg' %}); 
+                height: 400px; 
+                background-size: cover; 
+                background-position: center;">
                 <h1 class="display-4 text-white pt-5">Welcome to Luna's Pup Emporium!</h1>
                 <p class="lead text-white">Your one-stop shop for premium pet products. From leashes to toys, we've got
                     everything your furry friend needs.</p>
@@ -46,30 +51,11 @@
     <div class="jumbotron jumbotron-fluid mt-5 text-center bg-secondary text-white">
         <div class="container">
             <h1 class="display-4">Special Offers!</h1>
-            <p class="lead">Get up to 30% off selected items. Don't miss out!</p>
+            <p class="lead">Get up to 25% off selected items. Don't miss out!</p>
             <a href="{% url 'store:special_offers' %}" class="btn btn-lg btn-outline-light">Shop Special Offers</a>
         </div>
     </div>
 
-    <!-- New Arrivals Section -->
-    <section class="new-arrivals my-5">
-        <h2 class="mb-4">New Arrivals</h2>
-        <div class="row">
-            {% for product in new_arrivals %}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="{{ product.featured_image.url }}" class="card-img-top img-fluid" alt="{{ product.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ product.name }}</h5>
-                        <p class="card-text">${{ product.price|floatformat:2 }}</p>
-                        <a href="{% url 'store:product_detail' product.id %}" class="btn btn-info btn-block">View
-                            Product</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </section>
 
     <!-- Testimonials Section with 5-star Icons -->
     <section class="testimonials text-center my-5">
