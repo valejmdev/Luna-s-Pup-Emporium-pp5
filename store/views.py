@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import Category, Product, FAQ
 from django.db.models import Q, Avg
 from checkout.models import Order
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import NewsletterForm
+from .models import NewsletterSubscriber
 
 def product_list(request, category_slug=None):
     if category_slug:
@@ -110,8 +114,29 @@ def terms_conditions(request):
     return render(request, 'store/terms_conditions.html')
 
 def newsletter(request):
-    # Your view logic here
-    return render(request, 'store/newsletter.html')
+    if request.method == 'POST':
+        form = NewsletterForm(request.POST)
+        if form.is_valid():
+            # Save the subscription
+            subscriber = form.save()
+            
+            # Send a confirmation email with the first article
+            send_mail(
+                'Welcome to Our Newsletter!',
+                'Thank you for subscribing! Here is your first article: Summer Safety Tips for Your Dog.\n\nAs the temperature rises, it\'s important to keep our furry friends safe and comfortable. Dogs can easily overheat in hot weather, which can lead to serious health issues...',
+                'from@example.com',  # Change this to your email
+                [subscriber.email],
+                fail_silently=False,
+            )
+            
+            # Redirect to a confirmation page
+            return render(request, 'store/newsletter_confirmation.html')
+        else:
+            messages.error(request, "There was an error with your subscription.")
+    else:
+        form = NewsletterForm()
+
+    return render(request, 'store/newsletter.html', {'form': form})
 
 def article_detail(request, slug):
     articles = {
