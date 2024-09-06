@@ -22,12 +22,12 @@
             <tbody>
                 {% for item in cart_items %}
                 <tr data-product-id="{{ item.product.id }}">
-                    <td>
+                    <td data-label="Product Image">
                         <img src="{{ item.product.featured_image.url }}" alt="{{ item.product.name }}" class="img-fluid"
                             style="max-width: 100px;">
                     </td>
-                    <td>{{ item.product.name }}</td>
-                    <td>
+                    <td data-label="Product Name">{{ item.product.name }}</td>
+                    <td data-label="Product Quantity">
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="button"
@@ -43,9 +43,9 @@
                             </div>
                         </div>
                     </td>
-                    <td>${{ item.product.price|floatformat:2 }}</td>
-                    <td class="item-total-price">${{ item.total_price|floatformat:2 }}</td>
-                    <td>
+                    <td data-label="Product Price">${{ item.product.price|floatformat:2 }}</td>
+                    <td data-label="Total Price" class="item-total-price">${{ item.total_price|floatformat:2 }}</td>
+                    <td data-label="Actions">
                         <a href="{% url 'cart:cart_remove' item.product.id %}" class="btn btn-danger btn-sm">Remove</a>
                     </td>
                 </tr>

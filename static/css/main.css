@@ -27,6 +27,47 @@ div#accordion {
     margin-bottom: 3rem !important;
 }
 
+/* General Hero Section Styles */
+.hero-image {
+    position: relative;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-image h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.hero-image p {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+    .hero-image {
+        height: 300px; /* Reduce height for small screens */
+        padding: 1rem; /* Add padding to ensure text doesn't touch edges */
+    }
+
+    .hero-image h1 {
+        font-size: 1.8rem; /* Reduce the font size for smaller screens */
+    }
+
+    .hero-image p {
+        font-size: 1rem; /* Smaller text for mobile */
+    }
+
+    .hero-image a {
+        font-size: 1rem; /* Adjust button font size */
+        padding: 0.5rem 1rem; /* Ensure button size is appropriate */
+    }
+}
+
 /* Background and Text Colors */
 .bg-steel {
     background-color: #3a4b40; /* Dark green-grey background */
@@ -99,6 +140,40 @@ div#accordion {
     }
 }
 
+/* Featured Products and Shop Now Button Spacing */
+.featured-products-heading {
+    font-size: 2rem; /* Adjust font size if needed */
+    text-align: center; /* Center the heading */
+    margin-bottom: 2rem; /* Add space below the heading */
+}
+
+.shop-now-button {
+    display: block; /* Ensure the button is displayed as a block */
+    margin: 0 auto; /* Center the button */
+    padding: 15px 30px; /* Adjust padding for better spacing */
+    font-size: 1.2rem; /* Adjust font size for readability */
+    background-color: #13a366; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    cursor: pointer; /* Change cursor on hover */
+}
+
+.shop-now-button:hover {
+    background-color: #009080; /* Darker background on hover */
+}
+
+@media (max-width: 576px) {
+    .featured-products-heading {
+        font-size: 1.5rem; /* Reduce font size for smaller screens */
+        margin-bottom: 1.5rem; /* Adjust spacing for mobile devices */
+    }
+
+    .shop-now-button {
+        padding: 12px 20px; /* Adjust padding for smaller screens */
+        font-size: 1rem; /* Adjust button font size */
+    }
+}
+
 /* Alert Styles */
 .alert {
     padding: 15px;
@@ -167,13 +242,215 @@ div#accordion {
     display: inline;
 }
 
-.blockquote-footer{
+.blockquote-footer {
     color: #fff !important;
     font-size: large;
 }
 
-.footer-newsletter-text{
+.footer-newsletter-text {
     color: #fff !important;
+}
+
+/* Styles for Login Page */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    color: #4B4453; /* Same text color as used in other headings */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-container form {
+    margin-bottom: 15px;
+}
+
+.login-container .btn {
+    background-color: #13a366; /* Primary button color */
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container .btn:hover {
+    background-color: #00a3d3; /* Change button color on hover */
+}
+
+.login-links {
+    text-align: center;
+}
+
+.login-links p {
+    margin-top: 10px;
+}
+
+.login-links .back-link {
+    color: #13a366; /* Consistent with other links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-links .back-link:hover {
+    text-decoration: underline;
+}
+
+/* Add margin and make the forgot password link inline-block for better spacing */
+.forgot-password-link {
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Styles for Sign Up Page */
+.signup-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-container h2 {
+    color: #4B4453; /* Consistent heading color */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signup-container form {
+    margin-bottom: 15px;
+}
+
+.signup-container .btn {
+    background-color: #13a366; /* Primary button color */
+    border: none;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.signup-container .btn:hover {
+    background-color: #00a3d3; /* Hover color change */
+}
+
+.signup-links {
+    text-align: center;
+}
+
+.signup-links p {
+    margin-top: 10px;
+}
+
+.signup-links .back-link {
+    color: #13a366; /* Consistent link color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-links .back-link:hover {
+    text-decoration: underline;
+}
+
+/* Hide the table layout on small screens and use a stacked layout */
+@media (max-width: 768px) {
+    .table {
+        display: block;
+        width: 100%;
+    }
+
+    .table thead {
+        display: none; /* Hide the table headers on small screens */
+    }
+
+    .table tbody, .table tr {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px; /* Add space between rows */
+    }
+
+    .table td {
+        display: block;
+        width: 100%;
+        text-align: right; /* Align text to the right for readability */
+        position: relative;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .table td::before {
+        content: attr(data-label); /* Add a label before each cell content */
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-right: 10px;
+        white-space: nowrap;
+        font-weight: bold;
+        text-align: left;
+        background-color: #f9f9f9; /* Slight background color for labels */
+    }
+
+    .table td img {
+        max-width: 100%; /* Ensure images are responsive */
+        height: auto;
+    }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .text-right h4 {
+        font-size: 1.2rem; /* Adjust font size for smaller screens */
+    }
+}
+
+.error-page .hero-image {
+    position: relative;
+    height: 100vh; /* Make the hero full height */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.error-page h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.error-page p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.error-page a.btn {
+    background-color: #f05a28; /* Adjust to match your brand colors */
+    color: white;
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.error-page a.btn:hover {
+    background-color: #d44b20; /* Slight hover effect */
 }
 
 /* Stripe Rules */
@@ -337,7 +614,7 @@ footer a {
     margin-bottom: 10px; /* Add spacing between links */
 }
 
-.footer-p-visibility{
+.footer-p-visibility {
     color: #fff;
 }
 
@@ -392,4 +669,48 @@ footer .nav-item a {
 
 footer .nav-item a:hover {
     color: #006e9c; /* Darker blue on hover */
+}
+
+/* Media query for screen sizes 320px and below */
+@media (max-width: 370px) {
+    .product-info {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .product-info h1 {
+        font-size: 1.5rem; /* Decrease font size to fit smaller screens */
+    }
+
+    .product-info p {
+        font-size: 0.9rem; /* Adjust paragraph font size */
+    }
+
+    .product-info .btn {
+        width: 100%; /* Make button full width */
+        font-size: 14px; /* Adjust button text size */
+        padding: 10px; /* Ensure button is large enough to tap */
+    }
+
+    .product-image img {
+        height: auto; /* Ensure the image resizes properly */
+        margin-bottom: 10px; /* Add margin between images */
+    }
+
+    .additional-images img {
+        width: 100%;
+        height: auto; /* Ensure additional images are fully responsive */
+    }
+
+    .hero-image h1 {
+        font-size: 1.5rem; /* Reduce hero title size */
+    }
+
+    .hero-image p {
+        font-size: 0.9rem; /* Adjust text size for better fit */
+    }
+
+    .footer {
+        padding: 15px 0; /* Reduce footer padding for small screens */
+    }
 }
