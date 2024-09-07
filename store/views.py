@@ -1,11 +1,14 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product, FAQ
 from django.db.models import Q, Avg
 from checkout.models import Order
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.conf import settings
 from .forms import NewsletterForm
-from .models import NewsletterSubscriber
+from django.contrib.auth.decorators import login_required
+from .forms import ReviewForm
+
 
 def product_list(request, category_slug=None):
     if category_slug:
@@ -37,7 +40,30 @@ def product_detail(request, product_id):
     product.sale_price = product.get_sale_price()
     product.avg_rating = product.average_rating()
 
-    return render(request, 'store/product_detail.html', {'product': product, 'images': images})
+    # Handle review form submission
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.user = request.user
+            review.save()
+            messages.success(request, "Your review has been submitted.")
+            return redirect('store:product_detail', product_id=product.id)
+        else:
+            messages.error(request, "There was an issue with your review submission.")
+    else:
+        form = ReviewForm()
+
+    # Fetch existing reviews
+    reviews = product.reviews.all()
+
+    return render(request, 'store/product_detail.html', {
+        'product': product,
+        'images': images,
+        'form': form,
+        'reviews': reviews
+    })
 
 # View to display all products
 def all_products(request):
@@ -122,17 +148,20 @@ def newsletter(request):
         if form.is_valid():
             # Save the subscription
             subscriber = form.save()
+
+            # Send confirmation email
+            subject = "Thank you for subscribing to Luna’s Pup Emporium!"
+            message = "You've successfully subscribed to our newsletter."
+            email_from = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [subscriber.email]
+
+            try:
+                send_mail(subject, message, email_from, recipient_list)
+                messages.success(request, "Subscription successful! A confirmation email has been sent.")
+            except Exception as e:
+                messages.error(request, "There was an issue sending the confirmation email.")
             
-            # Send a confirmation email with the first article
-            send_mail(
-                'Welcome to Our Newsletter!',
-                'Thank you for subscribing! Here is your first article: Summer Safety Tips for Your Dog.\n\nAs the temperature rises, it\'s important to keep our furry friends safe and comfortable. Dogs can easily overheat in hot weather, which can lead to serious health issues...',
-                'from@example.com',  # Change this to your email
-                [subscriber.email],
-                fail_silently=False,
-            )
-            
-            # Redirect to a confirmation page
+            # Redirect to a confirmation page or render the same page
             return render(request, 'store/newsletter_confirmation.html')
         else:
             messages.error(request, "There was an error with your subscription.")
@@ -197,7 +226,33 @@ def article_detail(request, slug):
 
     return render(request, 'store/article_detail.html', {'article': article})
 
-
+@login_required
 def order_detail(request, order_id):
+    # Fetch the order object
     order = get_object_or_404(Order, id=order_id)
+
+    # Check if the order belongs to the currently logged-in user
+    if order.user != request.user:
+        # If not, redirect to an error page or a different view
+        messages.error(request, "You do not have permission to view this order.")
+
+        # Fetch featured products for the index view
+        featured_products = Product.objects.filter(featured=True)
+        for product in featured_products:
+            product.sale_price = product.get_sale_price()
+            product.avg_rating = product.average_rating()
+
+        return render(request, 'store/index.html', {'featured_products': featured_products})
+
+    # If the user owns the order, render the order detail page
     return render(request, 'store/order_detail.html', {'order': order})
+
+def send_order_confirmation(request, order_id):
+    # Fetch order details and customer email
+    customer_email = 'customer@example.com'
+    subject = 'Order Confirmation'
+    body = 'Thank you for your order!'
+
+    send_mail(customer_email, subject, body)
+
+    return render(request, 'store/confirmation.html')
