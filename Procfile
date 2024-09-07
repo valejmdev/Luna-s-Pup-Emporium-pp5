@@ -1,1 +1,1 @@
-web: gunicorn lunaspupemporium.wsgi
+web: gunicorn --timeout 120 --workers 3 lunaspupemporium.wsgi
