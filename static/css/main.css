@@ -46,6 +46,7 @@ div#accordion {
 
 .hero-image p {
     font-size: 1.2rem;
+    font-weight: 700;
 }
 
 @media (max-width: 576px) {
