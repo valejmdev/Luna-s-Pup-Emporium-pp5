@@ -134,6 +134,25 @@ def about_us(request):
     return render(request, 'store/about_us.html')
 
 def contact_us(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+
+        # Construct the email body
+        email_message = f"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+
+        try:
+            send_mail(
+                subject=f"Contact Us Message from {name}",
+                message=email_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,  # Ensure this is set in settings.py
+                recipient_list=['lunapupempshop@gmail.com'],
+            )
+            messages.success(request, "Your message has been sent successfully. We will get back to you soon.")
+        except Exception as e:
+            messages.error(request, "There was an error sending your message. Please try again later.")
+
     return render(request, 'store/contact_us.html')
 
 def terms_conditions(request):
@@ -256,3 +275,12 @@ def send_order_confirmation(request, order_id):
     send_mail(customer_email, subject, body)
 
     return render(request, 'store/confirmation.html')
+
+def error_403(request, exception=None):
+    return render(request, 'store/403.html', status=403)
+
+def error_404(request, exception=None):
+    return render(request, 'store/404.html', status=404)
+
+def error_500(request):
+    return render(request, 'store/500.html', status=500)
