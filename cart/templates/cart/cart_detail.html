@@ -1,19 +1,18 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-
 <div class="container mt-5">
     <h1 class="mb-4">Your Shopping Cart</h1>
 
     {% if cart_items %}
     <form method="post" action="{% url 'cart:update_cart' %}" id="cart-form">
         {% csrf_token %}
-        <table class="table table-bordered">
+        <table class="table table-bordered cart-table">
             <thead>
                 <tr>
                     <th>Product Image</th>
                     <th>Product Name</th>
-                    <th>Product Quantity</th>
+                    <th class="quantity-column">Product Quantity</th>
                     <th>Product Price</th>
                     <th>Total Price</th>
                     <th>Actions</th>
@@ -27,14 +26,14 @@
                             style="max-width: 100px;">
                     </td>
                     <td data-label="Product Name">{{ item.product.name }}</td>
-                    <td data-label="Product Quantity">
-                        <div class="input-group">
+                    <td data-label="Product Quantity" class="quantity-column">
+                        <div class="input-group quantity-control">
                             <div class="input-group-prepend">
                                 <button class="btn btn-outline-secondary" type="button"
                                     data-product-id="{{ item.product.id }}" data-change="-1"
                                     onclick="updateQuantity(this)">-</button>
                             </div>
-                            <input type="text" class="form-control text-center" name="quantity_{{ item.product.id }}"
+                            <input type="text" class="form-control text-center quantity-input" name="quantity_{{ item.product.id }}"
                                 value="{{ item.quantity }}" readonly>
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button"
@@ -43,6 +42,7 @@
                             </div>
                         </div>
                     </td>
+                    
                     <td data-label="Product Price">${{ item.product.price|floatformat:2 }}</td>
                     <td data-label="Total Price" class="item-total-price">${{ item.total_price|floatformat:2 }}</td>
                     <td data-label="Actions">
@@ -55,7 +55,7 @@
 
         <div class="text-right mt-4">
             <h4>Total: ${{ total_price|floatformat:2 }}</h4>
-            <button type="submit" class="btn btn-primary">Update Cart</button>
+            <button type="submit" class="btn btn-primary space-cart-button">Update Cart</button>
             <a href="{% url 'checkout:checkout' %}" class="btn btn-primary ml-2">Proceed to Checkout</a>
         </div>
     </form>
@@ -100,5 +100,4 @@
         }
     });
 </script>
-
 {% endblock %}

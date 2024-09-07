@@ -392,9 +392,8 @@ div#accordion {
 
     .table td::before {
         content: attr(data-label); /* Add a label before each cell content */
-        position: absolute;
+        position: relative;
         left: 0;
-        width: 50%;
         padding-right: 10px;
         white-space: nowrap;
         font-weight: bold;
@@ -413,6 +412,22 @@ div#accordion {
 
     .text-right h4 {
         font-size: 1.2rem; /* Adjust font size for smaller screens */
+    }
+
+    .cart-table .quantity-column {
+        height: 100px;
+    }
+
+    .cart-table input[type="number"] {
+        width: 60px; /* Set a smaller width for the quantity input field */
+    }
+
+    .cart-table td, .cart-table th {
+        text-align: center; /* Align text and content to the center */
+    }
+
+    button.btn.btn-primary.space-cart-button{
+        margin: 20px;
     }
 }
 
