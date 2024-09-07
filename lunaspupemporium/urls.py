@@ -19,6 +19,8 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include  
 from checkout import views as checkout_views
+from django.contrib.sitemaps.views import sitemap
+from store.sitemaps import StaticViewSitemap, ProductSitemap, CategorySitemap
 
 sitemaps = {
     'static': StaticViewSitemap,
