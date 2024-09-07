@@ -1,5 +1,5 @@
 {% extends "store/base.html" %}
-
+{% load static %}
 {% block content %}
 <div class="container py-5">
     <h1 class="text-center mb-4">About Us</h1>
@@ -9,6 +9,10 @@
     </p>
 
     <div class="mt-5">
+    
+        <div class="text-center mb-4">
+            <img src="{% static 'images/valentin_luna.png' %}" alt="Valentin and Luna" class="img-fluid rounded-circle" style="max-width: 300px; height: auto;">
+        </div>
         <h2 class="mb-3">Our Story</h2>
         <p>
             I’m <strong>Valentin</strong>, a loving dog owner and the proud parent of <strong>Luna</strong>, my adorable and loyal four-legged friend who inspired this journey. Luna has been my constant companion, bringing joy and love into my life every day. Our bond sparked a deep passion for pets and inspired me to create a space where pet owners can find everything they need to keep their furry companions safe, happy, and loved.
