@@ -5,8 +5,7 @@
     <!-- Welcome Section -->
     <div class="row mb-5">
         <div class="col text-center">
-            <div class="hero-image" 
-                style="background-image: url({% static 'images/default.jpg' %}); 
+            <div class="hero-image" style="background-image: url({% static 'images/lunaheroimage.png' %}); 
                 height: 400px; 
                 background-size: cover; 
                 background-position: center;">
@@ -14,9 +13,9 @@
                 <p class="lead text-white">Your one-stop shop for premium pet products. From leashes to toys, we've got
                     everything your furry friend needs.</p>
                 <a href="{% url 'store:all_products' %}" class="btn btn-lg btn-primary">Shop Now</a>
+            </div>
         </div>
     </div>
-
 
     <!-- Featured Products Section -->
     <div class="row mb-5">
@@ -30,13 +29,22 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text">{{ product.description|truncatewords:20 }}</p>
+
+                            <!-- Display Price and Sale Price -->
                             <p class="card-text">
-                                Price: ${{ product.sale_price }}{% if product.on_sale %}
-                                <del>${{ product.price }}</del>{% endif %}
+                                {% if product.on_sale %}
+                                <span class="text-muted"><del>${{ product.price }}</del></span>
+                                <span class="text-danger">${{ product.sale_price }}</span>
+                                {% else %}
+                                <span>${{ product.price }}</span>
+                                {% endif %}
                             </p>
+
+                            <!-- Display Rating -->
                             <p class="card-text">
                                 Rating: {{ product.avg_rating }} / 5
                             </p>
+
                             <a href="{% url 'store:product_detail' product.id %}" class="btn btn-primary">View
                                 Product</a>
                         </div>
@@ -55,7 +63,6 @@
             <a href="{% url 'store:special_offers' %}" class="btn btn-lg btn-outline-light">Shop Special Offers</a>
         </div>
     </div>
-
 
     <!-- Testimonials Section with 5-star Icons -->
     <section class="testimonials text-center my-5">
