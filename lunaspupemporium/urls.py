@@ -20,6 +20,12 @@ from django.contrib import admin
 from django.urls import path, include  
 from checkout import views as checkout_views
 
+sitemaps = {
+    'static': StaticViewSitemap,
+    'products': ProductSitemap,
+    'categories': CategorySitemap,
+}
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('store.urls', namespace='store')),
@@ -28,6 +34,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')), 
     path('checkout/', include('checkout.urls', namespace='checkout')),
     path('webhook/', checkout_views.stripe_webhook, name='stripe_webhook'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
 
 if settings.DEBUG:

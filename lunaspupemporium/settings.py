@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     # Third-party apps
     'crispy_forms',
+    'django.contrib.sitemaps',
     'crispy_bootstrap5',
     'cloudinary',
     'allauth',
