@@ -620,7 +620,7 @@ footer a {
 
 .row {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .footer-link-space {
