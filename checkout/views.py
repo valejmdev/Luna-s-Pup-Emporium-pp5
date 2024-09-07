@@ -9,8 +9,10 @@ from .forms import OrderForm
 from .models import Order, OrderLineItem
 from cart.models import Cart, CartItem
 from profiles.models import UserProfile 
+from django.contrib.auth.decorators import login_required
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
+
 
 def checkout(request):
     if not request.user.is_authenticated:
