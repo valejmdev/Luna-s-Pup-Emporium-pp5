@@ -5,6 +5,7 @@ from store.models import Product
 from django.http import JsonResponse
 from .models import Cart, CartItem
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 
 
 def get_or_create_cart(user):
@@ -14,6 +15,7 @@ def get_or_create_cart(user):
     else:
         return None
 
+@login_required
 def cart_add(request, product_id):
     cart = get_or_create_cart(request.user)
     product = get_object_or_404(Product, id=product_id)
@@ -44,6 +46,7 @@ def cart_remove(request, product_id):
         cart_item.delete()
     return redirect('cart:cart_detail')
 
+@login_required
 def cart_detail(request):
     cart = get_or_create_cart(request.user)
     cart_items = CartItem.objects.filter(cart=cart)
