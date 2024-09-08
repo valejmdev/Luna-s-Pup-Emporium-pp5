@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from decimal import Decimal
+from django.utils import timezone
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -21,6 +23,7 @@ class Product(models.Model):
     on_sale = models.BooleanField(default=False)
     rating = models.FloatField(default=0.0)
     featured = models.BooleanField(default=False)
+    updated_at = models.DateTimeField(auto_now=True) 
 
     def __str__(self):
         return self.name

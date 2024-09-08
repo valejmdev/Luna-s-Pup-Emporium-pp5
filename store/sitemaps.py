@@ -1,6 +1,6 @@
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
-from .models import Product, Category  
+from .models import Product, Category  # Adjust imports as needed
 
 class StaticViewSitemap(Sitemap):
     changefreq = "weekly"
@@ -9,8 +9,7 @@ class StaticViewSitemap(Sitemap):
     def items(self):
         return ['store:index', 'store:all_products', 'store:special_offers', 
                 'store:terms_conditions', 'store:privacy_policies', 
-                'store:faq', 'store:about_us', 'store:contact_us', 
-                'profiles:profile']
+                'store:faq', 'store:about_us', 'store:contact_us']
 
     def location(self, item):
         return reverse(item)
@@ -23,7 +22,7 @@ class ProductSitemap(Sitemap):
         return Product.objects.all()
 
     def lastmod(self, obj):
-        return obj.updated_at  
+        return obj.updated_at  # Make sure Product model has an updated_at field
 
 class CategorySitemap(Sitemap):
     changefreq = "weekly"
