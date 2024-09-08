@@ -1,0 +1,20 @@
+{% extends "store/base.html" %}
+
+{% block content %}
+<div class="confirm-email-container">
+  <h2>Email Confirmation</h2>
+  <p>Thank you for signing up! We've sent a confirmation link to your email address. Please check your inbox and follow the instructions to activate your account.</p>
+  
+  <!-- Option to resend confirmation email -->
+  <p>If you didn't receive the email, check your spam folder or click the button below to resend it:</p>
+  
+  <form method="post" action="{% url 'account_email_verification_sent' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-primary">Resend Confirmation Email</button>
+  </form>
+  
+  <p class="signup-links">
+    <a href="{% url 'account_login' %}" class="back-link">Back to Login</a>
+  </p>
+</div>
+{% endblock %}
