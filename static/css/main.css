@@ -121,7 +121,7 @@ div#accordion {
 }
 
 .site-header .btn {
-    background-color: #00a3d3; /* Blue background for button */
+    background-color: #064b95 !important; /* Blue background for button */
     border: none;
     color: #fff;
 }
@@ -153,7 +153,6 @@ div#accordion {
     margin: 0 auto; /* Center the button */
     padding: 15px 30px; /* Adjust padding for better spacing */
     font-size: 1.2rem; /* Adjust font size for readability */
-    background-color: #13a366; /* Button background color */
     color: white; /* Button text color */
     border: none; /* Remove border */
     cursor: pointer; /* Change cursor on hover */
@@ -162,6 +161,12 @@ div#accordion {
 .shop-now-button:hover {
     background-color: #009080; /* Darker background on hover */
 }
+
+.btn-primary{
+    background-color: #064b95 imo !important;
+    border-color: #064b95 !important;
+}
+
 
 @media (max-width: 576px) {
     .featured-products-heading {
@@ -565,6 +570,10 @@ div#accordion {
     text-decoration: underline;
 }
 
+.bg-secondary{
+    background-color: #3b4146 imo !important;
+}
+
 /* Additional Images */
 .additional-images img {
     width: 100%;
@@ -623,7 +632,7 @@ footer {
 }
 
 footer a {
-    color: #00a3d3; /* Blue links */
+    color: #b4eeff !important; /* Blue links */
     text-decoration: none;
     font-size: large;
     display: block; /* Ensure each link occupies its own line */
@@ -644,7 +653,7 @@ footer a {
 }
 
 .footer-head {
-    color: #00a3d3 !important; /* Blue for footer heading */
+    color: #b4eeff !important; /* Blue for footer heading */
     font-size: x-large;
     margin-bottom: 20px; /* Add space below the heading */
 }
@@ -679,12 +688,12 @@ footer .nav-item {
 }
 
 footer .nav-item a {
-    color: #00a3d3; /* Blue for social media icons */
+    color: #b4eeff; /* Blue for social media icons */
     font-size: 24px; /* Increase size of social media icons */
 }
 
 footer .nav-item a:hover {
-    color: #006e9c; /* Darker blue on hover */
+    color: #00a3d3; /* Darker blue on hover */
 }
 
 /* Media query for screen sizes 320px and below */
