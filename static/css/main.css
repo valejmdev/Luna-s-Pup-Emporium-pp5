@@ -134,6 +134,10 @@ div#accordion {
     color: #212529 !important;
 }
 
+.btn-outline-primary {
+    color: #007bff !important;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .site-header .form-control {
