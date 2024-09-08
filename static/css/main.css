@@ -509,6 +509,10 @@ div#accordion {
     text-decoration: underline;
   }
 
+.small-text-confirmation{
+    font-size: small;
+}
+
 /* Stripe Rules */
 #card-element {
     width: 100%;
