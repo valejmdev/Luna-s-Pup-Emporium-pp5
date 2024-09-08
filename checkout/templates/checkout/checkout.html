@@ -3,25 +3,62 @@
 {% block content %}
 <div class="container py-5">
     <h1 class="text-center mb-4">Checkout</h1>
-    
+
     <!-- Instructions for the checkout process -->
     <p class="text-muted text-center">Please complete the form below to finalize your order. Fields marked with <span class="text-danger">*</span> are required. Make sure to double-check your delivery information before proceeding to payment.</p>
-    
+
     <p class="text-info text-center">Important: You will be redirected to the payment section after confirming your order details.</p>
 
     <form action="{% url 'checkout:checkout' %}" method="POST" class="needs-validation" novalidate>
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-md-6">
-                {{ order_form.as_p }}
-                
-                <!-- Further Explanation of Fields -->
-                <p class="text-muted">
-                    <strong>Full Name:</strong> Ensure this matches the name on your payment method.<br>
-                    <strong>Email:</strong> This will be used to send your order confirmation.<br>
-                    <strong>Address:</strong> Make sure your shipping details are accurate for a smooth delivery.<br>
-                    <strong>Phone Number:</strong> Optional, but helpful for order-related communication.<br>
-                </p>
+
+                <!-- Custom form fields with descriptive labels and red asterisks -->
+                <div class="form-group">
+                    <label for="id_full_name">Full Name <span class="text-danger">*</span></label>
+                    {{ order_form.full_name }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_email">Email <span class="text-danger">*</span></label>
+                    {{ order_form.email }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_phone_number">Phone Number (Optional)</label>
+                    {{ order_form.phone_number }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_street_address1">Street Address 1 <span class="text-danger">*</span></label>
+                    {{ order_form.street_address1 }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_street_address2">Street Address 2 (Optional)</label>
+                    {{ order_form.street_address2 }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_town_or_city">Town or City <span class="text-danger">*</span></label>
+                    {{ order_form.town_or_city }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_postcode">Postcode <span class="text-danger">*</span></label>
+                    {{ order_form.postcode }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_country">Country <span class="text-danger">*</span></label>
+                    {{ order_form.country }}
+                </div>
+
+                <div class="form-group">
+                    <label for="id_county">County (Optional)</label>
+                    {{ order_form.county }}
+                </div>
 
                 <button type="submit" class="btn btn-primary btn-block mt-4">Proceed to Payment</button>
             </div>
