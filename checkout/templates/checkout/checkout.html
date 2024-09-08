@@ -4,14 +4,32 @@
 <div class="container py-5">
     <h1 class="text-center mb-4">Checkout</h1>
     
+    <!-- Instructions for the checkout process -->
+    <p class="text-muted text-center">Please complete the form below to finalize your order. Fields marked with <span class="text-danger">*</span> are required. Make sure to double-check your delivery information before proceeding to payment.</p>
+    
+    <p class="text-info text-center">Important: You will be redirected to the payment section after confirming your order details.</p>
+
     <form action="{% url 'checkout:checkout' %}" method="POST" class="needs-validation" novalidate>
         {% csrf_token %}
         <div class="row justify-content-center">
             <div class="col-md-6">
                 {{ order_form.as_p }}
+                
+                <!-- Further Explanation of Fields -->
+                <p class="text-muted">
+                    <strong>Full Name:</strong> Ensure this matches the name on your payment method.<br>
+                    <strong>Email:</strong> This will be used to send your order confirmation.<br>
+                    <strong>Address:</strong> Make sure your shipping details are accurate for a smooth delivery.<br>
+                    <strong>Phone Number:</strong> Optional, but helpful for order-related communication.<br>
+                </p>
+
                 <button type="submit" class="btn btn-primary btn-block mt-4">Proceed to Payment</button>
             </div>
         </div>
     </form>
+
+    <p class="text-center text-muted mt-3">
+        By proceeding, you agree to our <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+    </p>
 </div>
 {% endblock %}
