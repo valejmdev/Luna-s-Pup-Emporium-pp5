@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from decimal import Decimal
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -12,6 +13,9 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('store:product_list', kwargs={'category_slug': self.slug})
 
 class Product(models.Model):
     name = models.CharField(max_length=255, db_index=True)
@@ -27,6 +31,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('store:product_detail', args=[self.id])  
 
     def get_sale_price(self):
         if self.on_sale:
