@@ -130,6 +130,10 @@ div#accordion {
     background-color: #006e9c; /* Darker blue on hover */
 }
 
+.dropdown-item {
+    color: #212529 !important;
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
     .site-header .form-control {
