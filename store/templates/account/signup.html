@@ -3,14 +3,21 @@
 {% block content %}
 <div class="signup-container">
   <h2>Sign Up</h2>
+  
+  <!-- Introductory Text -->
+  <p class="text-muted">Please fill out the form below to create an account. Fields marked with <span class="text-danger">*</span> are required. You can provide additional details like your address and phone number, but they are optional. Make sure your email and username are valid and unique.</p>
+  <p class="text-info">Important: Your email will be used for account verification, and you must provide a valid one to activate your account.</p>
+  
   <form method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
+    
     <div class="form-group">
       <!-- Username Field -->
       <label for="{{ form.username.id_for_label }}">
         {{ form.username.label }} <span class="text-danger">*</span>
       </label>
       {{ form.username }}
+      <small class="form-text text-muted">Your username should be unique. It will be used to log in to your account.</small>
       {% if form.username.errors %}
         <div class="text-danger">{{ form.username.errors }}</div>
       {% endif %}
@@ -22,6 +29,7 @@
         {{ form.email.label }} <span class="text-danger">*</span>
       </label>
       {{ form.email }}
+      <small class="form-text text-muted">A valid email is required for account activation and password recovery.</small>
       {% if form.email.errors %}
         <div class="text-danger">{{ form.email.errors }}</div>
       {% endif %}
@@ -33,6 +41,7 @@
         {{ form.address.label }} <span class="text-muted">(Optional)</span>
       </label>
       {{ form.address }}
+      <small class="form-text text-muted">Providing an address is optional but can help with personalized services.</small>
       {% if form.address.errors %}
         <div class="text-danger">{{ form.address.errors }}</div>
       {% endif %}
@@ -44,6 +53,7 @@
         {{ form.phone_number.label }} <span class="text-muted">(Optional)</span>
       </label>
       {{ form.phone_number }}
+      <small class="form-text text-muted">Providing your phone number is optional, but it can be used for customer support or order-related inquiries.</small>
       {% if form.phone_number.errors %}
         <div class="text-danger">{{ form.phone_number.errors }}</div>
       {% endif %}

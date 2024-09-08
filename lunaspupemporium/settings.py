@@ -140,7 +140,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ACCOUNT_FORMS = {
-    'signup': 'profiles.forms.CustomSignupForm',
+    'signup': 'store.forms.CustomSignupForm',
 }
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
