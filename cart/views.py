@@ -15,6 +15,7 @@ def get_or_create_cart(user):
     else:
         return None
 
+
 @login_required
 def cart_add(request, product_id):
     cart = get_or_create_cart(request.user)
@@ -29,7 +30,8 @@ def cart_add(request, product_id):
         messages.error(request, f'Invalid quantity: {e}')
         return redirect('store:product_detail', product_id=product_id)
 
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+    cart_item, created = CartItem.objects.get_or_create(
+        cart=cart, product=product)
     if created:
         cart_item.quantity = quantity
     else:
@@ -37,6 +39,7 @@ def cart_add(request, product_id):
     cart_item.save()
 
     return redirect('cart:cart_detail')
+
 
 def cart_remove(request, product_id):
     cart = get_or_create_cart(request.user)
@@ -46,18 +49,21 @@ def cart_remove(request, product_id):
         cart_item.delete()
     return redirect('cart:cart_detail')
 
+
 @login_required
 def cart_detail(request):
     cart = get_or_create_cart(request.user)
     cart_items = CartItem.objects.filter(cart=cart)
-    
+
     total_price = sum(item.total_price for item in cart_items)
-    
-    return render(request, 'cart/cart_detail.html', {'cart_items': cart_items, 'total_price': total_price})
+
+    return render(request, 'cart/cart_detail.html', {
+            'cart_items': cart_items, 'total_price': total_price})
+
 
 @require_POST
 def update_cart(request):
-    cart = get_or_create_cart(request.user)  # Get or create cart for authenticated user
+    cart = get_or_create_cart(request.user)
     if not cart:
         return JsonResponse({'error': 'Cart not found'}, status=400)
 
@@ -68,15 +74,17 @@ def update_cart(request):
             try:
                 quantity = int(value)
                 if quantity <= 0:
-                    raise ValidationError('Quantity must be greater than zero.')
-                
+                    raise ValidationError(
+                         'Quantity must be greater than zero.')
+
                 product = get_object_or_404(Product, id=product_id)
-                cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+                cart_item, created = CartItem.objects.get_or_create(
+                    cart=cart, product=product)
                 if created:
                     cart_item.quantity = quantity
                 else:
                     cart_item.quantity = quantity
-                
+
                 cart_item.save()
                 updated_items[product_id] = quantity
             except (ValueError, ValidationError) as e:
@@ -85,10 +93,10 @@ def update_cart(request):
     # Calculate updated total price
     cart_items = CartItem.objects.filter(cart=cart)
     total_price = sum(item.total_price for item in cart_items)
-    
+
     response_data = {
         'total_price': total_price,
         'updated_items': updated_items
     }
-    
+
     return JsonResponse(response_data)

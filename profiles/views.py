@@ -3,7 +3,7 @@ from django.contrib import messages
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from .models import UserProfile  
+from .models import UserProfile
 from .forms import UserUpdateForm
 from checkout.models import Order
 
@@ -26,7 +26,7 @@ def profile(request, username):
             user_profile.address = request.POST.get('address')
             user_profile.phone_number = request.POST.get('phone_number')
             user_profile.save()
-            
+
             messages.success(request, 'Your profile has been updated!')
             return redirect('profiles:profile', username=user.username)
 
@@ -53,7 +53,7 @@ def profile(request, username):
         'user': user,
         'u_form': u_form,
         'user_profile': user_profile,
-        'user_orders': user_orders, 
+        'user_orders': user_orders,
         'is_edit_mode': is_edit_mode
     }
 

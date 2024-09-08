@@ -7,6 +7,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.send']
 
+
 def get_gmail_service():
     creds = None
     if os.path.exists('token.json'):
@@ -15,7 +16,8 @@ def get_gmail_service():
         if creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            flow = InstalledAppFlow.from_client_secrets_file('client_secret.json', SCOPES)
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'client_secret.json', SCOPES)
             creds = flow.run_local_server(port=0)
         with open('token.json', 'w') as token:
             token.write(creds.to_json())
@@ -23,11 +25,17 @@ def get_gmail_service():
     service = build('gmail', 'v1', credentials=creds)
     return service
 
+
 def send_email(to, subject, body):
     service = get_gmail_service()
     message = {
         'raw': base64.urlsafe_b64encode(
-            f"From: your_email@gmail.com\nTo: {to}\nSubject: {subject}\n\n{body}".encode("utf-8")
+            (
+                f"From: your_email@gmail.com\n"
+                f"To: {to}\n"
+                f"Subject: {subject}\n\n"
+                f"{body}"
+            ).encode("utf-8")
         ).decode("utf-8")
     }
     service.users().messages().send(userId='me', body=message).execute()

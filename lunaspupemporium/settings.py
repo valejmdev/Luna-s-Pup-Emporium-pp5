@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
 
@@ -87,15 +86,15 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
             os.path.join(BASE_DIR, 'profiles', 'templates'),
-            os.path.join(BASE_DIR, 'cart', 'templates'),      
-            os.path.join(BASE_DIR, 'checkout', 'templates'), 
-            os.path.join(BASE_DIR, 'store', 'templates'),     
+            os.path.join(BASE_DIR, 'cart', 'templates'),
+            os.path.join(BASE_DIR, 'checkout', 'templates'),
+            os.path.join(BASE_DIR, 'store', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
-                'django.template.context_processors.request',  
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'cart.context_processors.cart_item_count',
@@ -110,13 +109,6 @@ WSGI_APPLICATION = 'lunaspupemporium.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
 
 DATABASES = {
     'default': dj_database_url.parse(
@@ -153,11 +145,11 @@ ACCOUNT_FORMS = {
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username'
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional' 
+ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_UNIQUE_EMAIL = True
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True  
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 DEFAULT_FROM_EMAIL = 'noreply@lunapupemp.com'
 # Internationalization
@@ -194,12 +186,23 @@ STATICFILES_DIRS = [
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+cloudinary.config(
+    cloud_name=os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    api_key=os.environ.get('CLOUDINARY_API_KEY'),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+    secure=True
+)
+
+MEDIA_URL = 'https://res.cloudinary.com/{}/image/upload/'.format(
+    os.environ.get('CLOUDINARY_CLOUD_NAME'))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Stripe Settings
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
 STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_WEBHOOK_SECRET')
 STRIPE_CURRENCY = os.getenv('STRIPE_CURRENCY', 'usd')
-FREE_DELIVERY_THRESHOLD = 50.00 
+FREE_DELIVERY_THRESHOLD = 50.00
 STANDARD_DELIVERY_PERCENTAGE = 10
 
 # Default primary key field type

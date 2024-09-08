@@ -2,6 +2,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter
 def add_class(field, css_class):
     """Add a CSS class to a form field."""

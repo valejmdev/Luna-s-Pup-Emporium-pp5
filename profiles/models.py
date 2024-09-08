@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 
+
 @receiver(post_save, sender=User)
 def send_welcome_email(sender, instance, created, **kwargs):
     if created:
@@ -20,7 +21,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=255, blank=True)
     phone_number = models.CharField(max_length=15, blank=True)
-    saved_payment_method = models.CharField(max_length=255, blank=True)  # Placeholder 
+    saved_payment_method = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return self.user.username
