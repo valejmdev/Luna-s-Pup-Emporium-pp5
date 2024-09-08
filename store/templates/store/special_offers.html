@@ -15,7 +15,7 @@
                         <span class="text-muted"><s>${{ product.price|floatformat:2 }}</s></span>
                         <span class="text-danger">${{ product.get_sale_price|floatformat:2 }}</span>
                     </p>
-                    <a href="{% url 'store:product_detail' product.id %}" class="btn btn-info btn-block">View Product</a>
+                    <a href="{% url 'store:product_detail' product.id %}" class="btn btn-primary btn-block">View Product</a>
                 </div>
             </div>
         </div>
