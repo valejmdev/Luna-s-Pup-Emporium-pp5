@@ -513,6 +513,14 @@ div#accordion {
     font-size: small;
 }
 
+.link-privacy {
+    color: #fff !important;
+}
+
+a {
+    color: #fff !important;
+}
+
 /* Stripe Rules */
 #card-element {
     width: 100%;
