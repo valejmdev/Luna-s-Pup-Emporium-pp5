@@ -474,6 +474,41 @@ div#accordion {
     background-color: #d44b20; /* Slight hover effect */
 }
 
+/*Confirm Email Page Rules*/
+.confirm-email-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .confirm-email-container h2 {
+    color: #007a8e; /* Match your site's theme colors */
+    margin-bottom: 20px;
+  }
+  
+  .confirm-email-container p {
+    color: #555;
+  }
+  
+  .confirm-email-container .btn-primary {
+    background-color: #13a366; /* Match your site's button color */
+    border: none;
+  }
+  
+  .confirm-email-container .back-link {
+    margin-top: 20px;
+    display: inline-block;
+    color: #009080;
+  }
+  
+  .confirm-email-container .back-link:hover {
+    text-decoration: underline;
+  }
+
 /* Stripe Rules */
 #card-element {
     width: 100%;

@@ -4,31 +4,6 @@ from django.contrib.auth.models import User
 from .models import UserProfile
 
 
-class CustomSignupForm(SignupForm):
-    address = forms.CharField(max_length=255, required=False)
-    phone_number = forms.CharField(max_length=15, required=False)
-
-    def save(self, request):
-        user = super(CustomSignupForm, self).save(request)
-        print(f"User {user.username} created successfully.")  # Debug message
-
-        # Create or update the UserProfile for the new user
-        user_profile, created = UserProfile.objects.get_or_create(
-            user=user
-        )
-
-        print(f"Profile created: {created}, updating profile data.")
-
-        # Update the profile fields
-        user_profile.address = self.cleaned_data.get('address')
-        user_profile.phone_number = self.cleaned_data.get('phone_number')
-        user_profile.save()
-
-        print("Profile saved successfully.")  # Debug message
-
-        return user
-
-
 class UserUpdateForm(forms.ModelForm):
     address = forms.CharField(max_length=255, required=False)
     phone_number = forms.CharField(max_length=15, required=False)

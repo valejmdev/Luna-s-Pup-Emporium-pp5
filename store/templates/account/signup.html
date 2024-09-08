@@ -5,9 +5,54 @@
   <h2>Sign Up</h2>
   <form method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="form-group">
+      <!-- Username Field -->
+      <label for="{{ form.username.id_for_label }}">
+        {{ form.username.label }} <span class="text-danger">*</span>
+      </label>
+      {{ form.username }}
+      {% if form.username.errors %}
+        <div class="text-danger">{{ form.username.errors }}</div>
+      {% endif %}
+    </div>
+    
+    <div class="form-group">
+      <!-- Email Field -->
+      <label for="{{ form.email.id_for_label }}">
+        {{ form.email.label }} <span class="text-danger">*</span>
+      </label>
+      {{ form.email }}
+      {% if form.email.errors %}
+        <div class="text-danger">{{ form.email.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <!-- Address Field (Optional) -->
+      <label for="{{ form.address.id_for_label }}">
+        {{ form.address.label }} <span class="text-muted">(Optional)</span>
+      </label>
+      {{ form.address }}
+      {% if form.address.errors %}
+        <div class="text-danger">{{ form.address.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="form-group">
+      <!-- Phone Number Field (Optional) -->
+      <label for="{{ form.phone_number.id_for_label }}">
+        {{ form.phone_number.label }} <span class="text-muted">(Optional)</span>
+      </label>
+      {{ form.phone_number }}
+      {% if form.phone_number.errors %}
+        <div class="text-danger">{{ form.phone_number.errors }}</div>
+      {% endif %}
+    </div>
+
+    <!-- Submit Button -->
     <button type="submit" class="btn btn-primary">Sign Up</button>
   </form>
+
   <div class="signup-links">
     <p><a href="{% url 'account_login' %}" class="back-link">Already have an account? Log in here.</a></p>
   </div>

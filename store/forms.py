@@ -1,7 +1,27 @@
 from django import forms
 from .models import NewsletterSubscriber
 from .models import Review
+from .models import UserProfile
 
+class CustomSignupForm(SignupForm):
+    address = forms.CharField(max_length=255, required=False)
+    phone_number = forms.CharField(max_length=15, required=False)
+
+    def save(self, request):
+        user = super(CustomSignupForm, self).save(request)
+        print(f"User {user.username} created successfully.")
+
+        # Create or update the UserProfile for the new user
+        user_profile, created = UserProfile.objects.get_or_create(
+            user=user
+        )
+
+        # Update the profile fields
+        user_profile.address = self.cleaned_data.get('address')
+        user_profile.phone_number = self.cleaned_data.get('phone_number')
+        user_profile.save()
+
+        return user
 
 class NewsletterForm(forms.ModelForm):
     class Meta:

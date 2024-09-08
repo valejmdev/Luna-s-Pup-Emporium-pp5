@@ -11,4 +11,6 @@ class CartItemForm(forms.ModelForm):
         quantity = self.cleaned_data.get('quantity')
         if quantity <= 0:
             raise forms.ValidationError('Quantity must be greater than zero.')
+        if quantity > 10:
+            raise forms.ValidationError('For larger orders, please use the Contat Us page.')
         return quantity
