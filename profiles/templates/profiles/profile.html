@@ -60,7 +60,7 @@
             <ul class="list-group">
                 {% for order in user_orders %}
                 <li class="list-group-item">
-                    <h5>Order #{{ order.order_number }} - {{ order.status }}</h5>
+                    <p><strong>Order #{{ order.order_number }} - {{ order.status }}</strong></p>
                     <p><strong>Placed on:</strong> {{ order.date|date:"F j, Y" }}</p>
                     <p><strong>Total:</strong> ${{ order.grand_total|floatformat:2 }}</p>
                     <a href="{% url 'store:order_detail' order.id %}" class="btn btn-sm btn-info">View Details</a>

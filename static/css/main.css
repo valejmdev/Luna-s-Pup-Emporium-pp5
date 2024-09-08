@@ -561,6 +561,7 @@ div#accordion {
 .product-info .back-link {
     display: inline-block;
     margin-top: 20px;
+    margin-bottom: 20px;
     color: #13a366;
     text-decoration: none;
     font-weight: bold;
@@ -572,6 +573,10 @@ div#accordion {
 
 .bg-secondary{
     background-color: #3b4045 !important;
+}
+
+.btn-faq{
+    white-space: unset !important;
 }
 
 /* Additional Images */
