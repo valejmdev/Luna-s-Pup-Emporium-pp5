@@ -1,0 +1,24 @@
+User-agent: *
+Disallow:
+Disallow: /admin/
+Disallow: /profile/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /login/
+Disallow: /logout/
+Disallow: /password_reset/
+Disallow: /password_change/
+Allow: /product_list/
+Allow: /product_detail/
+Allow: /all_products/
+Allow: /special_offers/
+Allow: /about_us/
+Allow: /contact_us/
+Allow: /faq/
+Allow: /terms_conditions/
+Allow: /privacy_policies/
+Allow: /newsletter/
+Allow: /article_detail/
+
+# Sitemap location
+Sitemap: https://www.lunaspupemporium.com/sitemap.xml
