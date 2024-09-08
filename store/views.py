@@ -447,16 +447,6 @@ def article_detail(request, slug):
     return render(request, 'store/article_detail.html', {'article': article})
 
 
-# Retrieve the correct article based on the slug
-    article = articles.get(slug)
-
-    # If the article is not found, you can handle the error (e.g., 404 page)
-    if not article:
-        return render(request, 'store/404.html')
-
-    return render(request, 'store/article_detail.html', {'article': article})
-
-
 @login_required
 def order_detail(request, order_id):
     # Fetch the order object

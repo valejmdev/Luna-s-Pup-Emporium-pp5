@@ -19,7 +19,10 @@ def profile(request, username):
         user_profile = UserProfile.objects.create(user=user)
 
     if request.method == 'POST':
+        # Delay the import here to avoid circular dependency
+        from store.forms import CustomSignupForm 
         u_form = UserUpdateForm(request.POST, instance=user)
+        
         if 'update' in request.POST and u_form.is_valid():
             u_form.save()
             # Update the UserProfile fields
@@ -44,17 +47,13 @@ def profile(request, username):
             }
         )
 
-    # Fetch all orders for the logged-in user
     user_orders = Order.objects.filter(user=user)
-
-    is_edit_mode = request.GET.get('edit') == 'true'
 
     context = {
         'user': user,
         'u_form': u_form,
         'user_profile': user_profile,
         'user_orders': user_orders,
-        'is_edit_mode': is_edit_mode
     }
 
     return render(request, 'profiles/profile.html', context)

@@ -2,7 +2,6 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import UserProfile
 
-
 class UserUpdateForm(forms.ModelForm):
     address = forms.CharField(max_length=255, required=False)
     phone_number = forms.CharField(max_length=15, required=False)
