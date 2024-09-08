@@ -1,7 +1,8 @@
 from django import forms
+from allauth.account.forms import SignupForm
 from .models import NewsletterSubscriber
 from .models import Review
-from .models import UserProfile
+from profiles.models import UserProfile
 
 class CustomSignupForm(SignupForm):
     address = forms.CharField(max_length=255, required=False)
