@@ -497,30 +497,30 @@ That means, the result you can see right now on the deployed page looks differen
 | Page | Screenshot |
 | --- | --- |
 | Index | ![screenshot](documentation/wireframes/desktop_index.png) |
-| Product List | ![screenshot](documentation/wireframes/desktop_product_list.png) |
-| Product Detail | ![screenshot](documentation/wireframes/desktop_product_detail.png) |
-| Cart | ![screenshot](documentation/wireframes/desktop_cart.png) |
-| Checkout | ![screenshot](documentation/wireframes/desktop_checkout.png) |
+| Product List | ![screenshot](documentation/wireframes/desktopproductlist.png) |
+| Product Detail | ![screenshot](documentation/wireframes/desktopproductdetail.png) |
+| Cart | ![screenshot](documentation/wireframes/desktopcart.png) |
+| Checkout | ![screenshot](documentation/wireframes/desktopcheckout.png) |
 
 ### Tablet
 
 | Page | Screenshot |
 | --- | --- |
-| Index | ![screenshot](documentation/wireframes/tablet_index.png) |
-| Product List | ![screenshot](documentation/wireframes/tablet_product_list.png) |
-| Product Detail | ![screenshot](documentation/wireframes/tablet_product_detail.png) |
-| Cart | ![screenshot](documentation/wireframes/tablet_cart.png) |
-| Checkout | ![screenshot](documentation/wireframes/tablet_checkout.png) |
+| Index | ![screenshot](documentation/wireframes/tabletindex.png) |
+| Product List | ![screenshot](documentation/wireframes/tabletproductlist.png) |
+| Product Detail | ![screenshot](documentation/wireframes/tablet_productdetail.png) |
+| Cart | ![screenshot](documentation/wireframes/tabletcart.png) |
+| Checkout | ![screenshot](documentation/wireframes/tabletcheckout.png) |
 
 ### Mobile
 
 | Page | Screenshot |
 | --- | --- |
-| Index | ![screenshot](documentation/wireframes/mobile_index.png) |
-| Product List | ![screenshot](documentation/wireframes/mobile_product_list.png) |
-| Product Detail | ![screenshot](documentation/wireframes/mobile_product_detail.png) |
-| Cart | ![screenshot](documentation/wireframes/mobile_cart.png) |
-| Checkout | ![screenshot](documentation/wireframes/mobile_checkout.png) |
+| Index | ![screenshot](documentation/wireframes/mobileindex.png) |
+| Product List | ![screenshot](documentation/wireframes/mobileproductlist.png) |
+| Product Detail | ![screenshot](documentation/wireframes/mobileproductdetail.png) |
+| Cart | ![screenshot](documentation/wireframes/mobilecart.png) |
+| Checkout | ![screenshot](documentation/wireframes/mobilecheckout.png) |
 
 ## Data Storage
 
