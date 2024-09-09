@@ -12,5 +12,5 @@ class CartItemForm(forms.ModelForm):
         if quantity <= 0:
             raise forms.ValidationError('Quantity must be greater than zero.')
         if quantity > 10:
-            raise forms.ValidationError('For larger orders, please use the Contat Us page.')
+            raise forms.ValidationError('For larger orders, please use the Contact Us page.')
         return quantity

@@ -42,7 +42,6 @@
                             </div>
                         </div>
                     </td>
-                    
                     <td data-label="Product Price">${{ item.product.price|floatformat:2 }}</td>
                     <td data-label="Total Price" class="item-total-price">${{ item.total_price|floatformat:2 }}</td>
                     <td data-label="Actions">
@@ -60,6 +59,10 @@
         </div>
     </form>
 
+    <div id="error-messages" class="mt-4">
+        <!-- Error messages will be displayed here -->
+    </div>
+
     {% else %}
     <p>Your cart is empty.</p>
     {% endif %}
@@ -75,12 +78,23 @@
                 method: 'POST',
                 data: $(this).serialize(), // Serialize the form data
                 headers: {
-                    'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]')
-                        .val() // Add CSRF token
+                    'X-CSRFToken': $('input[name="csrfmiddlewaretoken"]').val() // Add CSRF token
                 },
-                success: function () {
-                    // Reload the page after successfully updating the cart
-                    location.reload();
+                success: function (response) {
+                    $('#error-messages').empty(); // Clear previous error messages
+                    if (response.errors && Object.keys(response.errors).length > 0) {
+                        // Handle errors
+                        let errorMessages = '';
+                        $.each(response.errors, function (productId, errors) {
+                            $.each(errors, function (i, error) {
+                                errorMessages += `<p>Error for product ${productId}: ${error.message}</p>`;
+                            });
+                        });
+                        $('#error-messages').html(errorMessages);
+                    } else {
+                        // Update the cart UI
+                        location.reload();
+                    }
                 },
                 error: function () {
                     console.error('An error occurred while updating the cart.');
