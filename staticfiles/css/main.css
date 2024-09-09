@@ -173,6 +173,7 @@ div#accordion {
 .btn-primary{
     background-color: #064b95 !important;
     border-color: #064b95 !important;
+    color: #fff !important;
 }
 
 
@@ -529,10 +530,6 @@ div#accordion {
     color: #fff !important;
 }
 
-a {
-    color: #fff !important;
-}
-
 /* Stripe Rules */
 #card-element {
     width: 100%;
@@ -764,6 +761,10 @@ footer .nav-item a {
 
 footer .nav-item a:hover {
     color: #00a3d3; /* Darker blue on hover */
+}
+
+.list-background-colorchange{
+    background-color: #555555 !important;
 }
 
 /* Media query for screen sizes 320px and below */
