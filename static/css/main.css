@@ -568,6 +568,12 @@ a {
     background-color: #fefde5 !important;
 }
 
+.terms-privacy-background{
+    background-color: #3b4045;
+    text-align: center;
+    margin: 25px;
+}
+
 /* Product Detail Container Styles */
 .product-detail-container {
     margin-top: 20px;

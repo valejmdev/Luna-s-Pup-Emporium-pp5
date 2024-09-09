@@ -41,10 +41,11 @@
             </div>
         </div>
     </form>
-
-    <p class="text-center text-muted mt-3">
-        By proceeding, you agree to our <a href="{% url 'store:terms_conditions' %}">Terms & Conditions</a> and <a href="{% url 'store:privacy_policies' %}">Privacy Policy</a>.
-    </p>
+    <div class="terms-privacy-background">        
+        <p class="footer-newsletter-text">
+            By proceeding, you agree to our <a href="{% url 'store:terms_conditions' %}">Terms & Conditions</a> and <a href="{% url 'store:privacy_policies' %}">Privacy Policy</a>.
+        </p>
+    </div>
 </div>
 
 <!-- Load Stripe.js before your custom JavaScript -->

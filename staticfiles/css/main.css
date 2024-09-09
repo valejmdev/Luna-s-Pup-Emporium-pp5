@@ -378,6 +378,10 @@ div#accordion {
     text-decoration: underline;
 }
 
+.signup-redirect{
+    color: black;
+}
+
 /* Hide the table layout on small screens and use a stacked layout */
 @media (max-width: 768px) {
     .table {
@@ -562,6 +566,12 @@ a {
 
 .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
+}
+
+.terms-privacy-background{
+    background-color: #3b4045;
+    text-align: center;
+    margin: 25px;
 }
 
 /* Product Detail Container Styles */
