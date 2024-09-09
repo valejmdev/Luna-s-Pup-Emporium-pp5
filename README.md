@@ -10,6 +10,112 @@ This project was created as part of Code Institute's Full Stack Software Develop
 
 ### View the live website [here](https://luna-s-pup-emporium-pp5-c2576a3849ce.herokuapp.com)
 
+## 1. [Introduction](#introduction)
+
+## 2. [User Benefits](#user-benefits)
+- 2.1 [Exceptional Product Range](#exceptional-product-range)
+- 2.2 [Seamless Shopping Experience](#seamless-shopping-experience)
+- 2.3 [Engaging Features](#engaging-features)
+- 2.4 [Comprehensive Support](#comprehensive-support)
+- 2.5 [Stay Updated](#stay-updated)
+
+## 3. [Persona: Sarah Thompson - The Passionate Dog Enthusiast](#persona-sarah-thompson---the-passionate-dog-enthusiast)
+
+## 4. [Technologies Used](#technologies-used)
+- 4.1 [Backend](#backend)
+- 4.2 [Frontend](#frontend)
+- 4.3 [Database](#database)
+- 4.4 [Other Libraries](#other-libraries)
+
+## 5. [Features](#features)
+- 5.1 [Product Categories](#product-categories)
+- 5.2 [Shopping Experience](#shopping-experience)
+- 5.3 [User Accounts](#user-accounts)
+- 5.4 [Cart and Checkout](#cart-and-checkout)
+- 5.5 [Content Pages](#content-pages)
+- 5.6 [Newsletter](#newsletter)
+
+## 6. [Business Model](#business-model)
+- 6.1 [Key Partners](#1-key-partners)
+- 6.2 [Key Activities](#2-key-activities)
+- 6.3 [Value Proposition](#3-value-proposition)
+- 6.4 [Customer Relationships](#4-customer-relationships)
+- 6.5 [Customer Segments](#5-customer-segments)
+- 6.6 [Channels](#6-channels)
+- 6.7 [Key Resources](#7-key-resources)
+- 6.8 [Cost Structure](#8-cost-structure)
+- 6.9 [Revenue Streams](#9-revenue-streams)
+
+## 7. [Program Flowchart](#program-flowchart)
+- 7.1 [Key Features Integration](#key-features-integration)
+
+## 8. [Testing](#testing)
+- 8.1 [Code Validation](#code-validation)
+  - 8.1.1 [HTML](#html)
+  - 8.1.2 [CSS](#css)
+  - 8.1.3 [JavaScript](#javascript)
+  - 8.1.4 [Python](#python)
+- 8.2 [Lighthouse Audit](#lighthouse-audit)
+  - 8.2.1 [Desktop](#desktop)
+  - 8.2.2 [Mobile](#mobile)
+- 8.3 [General Testing](#general-testing)
+
+## 9. [Manual Testing](#manual-testing)
+- 9.1 [Mobile Testing](#mobile-testing)
+
+## 10. [Development Bugs](#development-bugs)
+
+## 11. [Unresolved Issues / Future Plans](#unresolved-issues--future-plans)
+
+## 12. [Wireframes](#wireframes)
+- 12.1 [Desktop](#desktop)
+- 12.2 [Tablet](#tablet)
+- 12.3 [Mobile](#mobile)
+
+## 13. [Data Storage](#data-storage)
+- 13.1 [User Information](#user-information)
+- 13.2 [Products and Categories](#products-and-categories)
+- 13.3 [Orders and Cart Information](#orders-and-cart-information)
+- 13.4 [Media Storage](#media-storage)
+- 13.5 [Newsletter Subscriptions](#newsletter-subscriptions)
+- 13.6 [Contact Us Inquiries](#contact-us-inquiries)
+
+## 14. [Data Handling and Privacy](#data-handling-and-privacy)
+- 14.1 [Django ORM Integration](#django-orm-integration)
+- 14.2 [Data Privacy](#data-privacy)
+- 14.3 [Real-Time Updates](#real-time-updates)
+- 14.4 [Security Measures](#security-measures)
+- 14.5 [Static and Media Files Management](#static-and-media-files-management)
+
+## 15. [API Integration](#api-integration)
+- 15.1 [Stripe API](#stripe-api)
+- 15.2 [Google Gmail API](#google-gmail-api)
+
+## 16. [Agile Methodology](#agile-methodology)
+- 16.1 [Why I Chose Notion](#why-i-chose-notion)
+- 16.2 [Agile Plan](#agile-plan)
+  - 16.2.1 [Project Initialization (10th August - 12th August)](#1-project-initialization-10th-august---12th-august)
+  - 16.2.2 [Database Design & Setup (13th August - 16th August)](#2-database-design--setup-13th-august---16th-august)
+  - 16.2.3 [Backend Development (17th August - 24th August)](#3-backend-development-17th-august---24th-august)
+  - 16.2.4 [Frontend Development (25th August - 31st August)](#4-frontend-development-25th-august---31st-august)
+  - 16.2.5 [Integration & Testing (1st September - 5th September)](#5-integration--testing-1st-september---5th-september)
+  - 16.2.6 [Final Review & Deployment Preparation (6th September - 7th September)](#6-final-review--deployment-preparation-6th-september---7th-september)
+  - 16.2.7 [Documentation & Wrap-Up (8th September - 9th September)](#7-documentation--wrap-up-8th-september---9th-september)
+- 16.3 [The Benefits of Notion](#the-benefits-of-notion)
+
+## 17. [Deployment](#deployment)
+- 17.1 [Deploying the App](#deploying-the-app)
+- 17.2 [Forking The Repository](#forking-the-repository)
+- 17.3 [Cloning The Repository](#cloning-the-repository)
+
+## 18. [Credits](#credits)
+- 18.1 [Content](#content)
+- 18.2 [Media](#media)
+
+## 19. [Acknowledgements](#acknowledgements)
+
+
+
 ## User Benefits
 
 ### Exceptional Product Range
