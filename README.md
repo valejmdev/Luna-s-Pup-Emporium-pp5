@@ -207,10 +207,9 @@ This persona captures the typical customer who would be attracted to the e-comme
     -   User navigates to static content pages like **About Us**, **Contact Us**, **FAQ**, **Terms and Conditions**, and **Privacy Policies**.
     -   **Contact Us**: Submits an inquiry or message, and receives an email confirmation.
 10.  **Newsletter Signup**
-    
-    -   User subscribes to the newsletter by providing an email address.
-    -   **Confirmation**: A success message is displayed, and a confirmation email is sent via the Gmail API.
 
+-   User subscribes to the newsletter by providing an email address.
+    -   **Confirmation**: A success message is displayed, and a confirmation email is sent via the Gmail API.
 ----------
 
 ### **Key Features Integration**
@@ -312,6 +311,8 @@ I have used the recommended [PEP8 CI Python Linter](https://pep8ci.herokuapp.com
 ----------------
 
 I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
+I acknowledge the issues i have in the current version, but i was not able to find any fixes in the time i have been given to perfect the scores.
+I also checked every contrast issue that came up and would argue against the issue, as everything is easily readable.
 
 ##### Desktop
 | Page | Screenshot |
@@ -325,7 +326,6 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Newsletter | ![screenshot](documentation/validation/lighthouse/lighthousedesktopnewsletter.png) |  
 | FAQ | ![screenshot](documentation/validation/lighthouse/lighthousedesktopfaq.png) |    
 | Cart Detail | ![screenshot](documentation/validation/lighthouse/lighthousedesktopcartdetail.png) | 
-| Payment | ![screenshot](documentation/validation/lighthouse/lighthousedesktoppayment.png) |  
 | Checkout | ![screenshot](documentation/validation/lighthouse/lighthousedesktopcheckout.png) |   
 | Order Confirmation | ![screenshot](documentation/validation/lighthouse/lighthousedesktoporderconfirmation.png) |
 | Order Detail | ![screenshot](documentation/validation/lighthouse/lighthousedesktoporderdetail.png) |   
@@ -333,7 +333,7 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Product Detail | ![screenshot](documentation/validation/lighthouse/lighthousedesktopproductdetail.png) |  
 | Product List | ![screenshot](documentation/validation/lighthouse/lighthousedesktopproductlist.png) |  
 | All Products | ![screenshot](documentation/validation/lighthouse/lighthousedesktopallproducts.png) | 
-| Special Offers | ![screenshot](documentation/validation/lighthouse/lighthousespecialoffers.png) |  
+| Special Offers | ![screenshot](documentation/validation/lighthouse/lighthousesdesktopspecialoffers.png) |  
 | Terms & Conditions | ![screenshot](documentation/validation/lighthouse/lighthousedesktoptermsconditions.png) |  
 
 ##### Mobile
@@ -347,8 +347,7 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | Signup | ![screenshot](documentation/validation/lighthouse/lighthousemobilesignup.png) | 
 | Newsletter | ![screenshot](documentation/validation/lighthouse/lighthousemobilenewsletter.png) |  
 | FAQ | ![screenshot](documentation/validation/lighthouse/lighthousemobilefaq.png) |    
-| Cart Detail | ![screenshot](documentation/validation/lighthouse/lighthousemobilecartdetail.png) | 
-| Payment | ![screenshot](documentation/validation/lighthouse/lighthousemobilepayment.png) |  
+| Cart Detail | ![screenshot](documentation/validation/lighthouse/lighthousemobilecartdetail.png) |  
 | Checkout | ![screenshot](documentation/validation/lighthouse/lighthousemobilecheckout.png) |   
 | Order Confirmation | ![screenshot](documentation/validation/lighthouse/lighthousemobileorderconfirmation.png) |
 | Order Detail | ![screenshot](documentation/validation/lighthouse/lighthousemobileorderdetail.png) |   
@@ -605,7 +604,8 @@ In this project, I adopted an agile approach to manage the development of **Luna
 ### Agile Plan
 
 The following is the agile plan I followed throughout the project. Each milestone was carefully tracked in Notion, ensuring I met my deadlines with some fixes and adjustments along the way.
-
+![screenshot](documentation/agilepart1.png)
+![screenshot](documentation/agilepart2.png)
 ----------
 
 ### **1. Project Initialization (10th August - 12th August)**
