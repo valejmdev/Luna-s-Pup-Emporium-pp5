@@ -1,70 +1,97 @@
 {% extends "store/base.html" %}
 
 {% block content %}
-<div class="signup-container">
   <h2>Sign Up</h2>
-  
-  <!-- Introductory Text -->
-  <p class="text-muted">Please fill out the form below to create an account. Fields marked with <span class="text-danger">*</span> are required. You can provide additional details like your address and phone number, but they are optional. Make sure your email and username are valid and unique.</p>
-  <p class="text-info">Important: Your email will be used for account verification, and you must provide a valid one to activate your account.</p>
   
   <form method="post" action="{% url 'account_signup' %}">
     {% csrf_token %}
     
+    {% if form.non_field_errors %}
+      <div class="errors">
+        {% for error in form.non_field_errors %}
+          <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+    
     <div class="form-group">
-      <!-- Username Field -->
-      <label for="{{ form.username.id_for_label }}">
-        {{ form.username.label }} <span class="text-danger">*</span>
-      </label>
+      {{ form.username.label_tag }}<br>
       {{ form.username }}
-      <small class="form-text text-muted">Your username should be unique. It will be used to log in to your account.</small>
       {% if form.username.errors %}
-        <div class="text-danger">{{ form.username.errors }}</div>
+        <div class="errors">
+          {% for error in form.username.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
     
     <div class="form-group">
-      <!-- Email Field -->
-      <label for="{{ form.email.id_for_label }}">
-        {{ form.email.label }} <span class="text-danger">*</span>
-      </label>
+      {{ form.email.label_tag }}<br>
       {{ form.email }}
-      <small class="form-text text-muted">A valid email is required for account activation and password recovery.</small>
       {% if form.email.errors %}
-        <div class="text-danger">{{ form.email.errors }}</div>
+        <div class="errors">
+          {% for error in form.email.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
-
+    
     <div class="form-group">
-      <!-- Address Field (Optional) -->
-      <label for="{{ form.address.id_for_label }}">
-        {{ form.address.label }} <span class="text-muted">(Optional)</span>
-      </label>
-      {{ form.address }}
-      <small class="form-text text-muted">Providing an address is optional but can help with personalized services.</small>
-      {% if form.address.errors %}
-        <div class="text-danger">{{ form.address.errors }}</div>
+      {{ form.password1.label_tag }}<br>
+      {{ form.password1 }}
+      {% if form.password1.errors %}
+        <div class="errors">
+          {% for error in form.password1.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
-
+    
     <div class="form-group">
-      <!-- Phone Number Field (Optional) -->
-      <label for="{{ form.phone_number.id_for_label }}">
-        {{ form.phone_number.label }} <span class="text-muted">(Optional)</span>
-      </label>
-      {{ form.phone_number }}
-      <small class="form-text text-muted">Providing your phone number is optional, but it can be used for customer support or order-related inquiries.</small>
-      {% if form.phone_number.errors %}
-        <div class="text-danger">{{ form.phone_number.errors }}</div>
+      {{ form.password2.label_tag }}<br>
+      {{ form.password2 }}
+      {% if form.password2.errors %}
+        <div class="errors">
+          {% for error in form.password2.errors %}
+            <p>{{ error }}</p>
+          {% endfor %}
+        </div>
       {% endif %}
     </div>
-
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Sign Up</button>
+    
+    {% if form.address %}
+      <div class="form-group">
+        {{ form.address.label_tag }}<br>
+        {{ form.address }}
+        {% if form.address.errors %}
+          <div class="errors">
+            {% for error in form.address.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    {% if form.phone_number %}
+      <div class="form-group">
+        {{ form.phone_number.label_tag }}<br>
+        {{ form.phone_number }}
+        {% if form.phone_number.errors %}
+          <div class="errors">
+            {% for error in form.phone_number.errors %}
+              <p>{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <button type="submit">Sign Up</button>
   </form>
-
-  <div class="signup-links">
-    <p><a href="{% url 'account_login' %}" class="back-link">Already have an account? Log in here.</a></p>
-  </div>
-</div>
+  
+  <p>Already have an account? <a href="{% url 'account_login' %}">Log in</a></p>
 {% endblock %}

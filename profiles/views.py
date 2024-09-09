@@ -36,7 +36,7 @@ def profile(request, username):
         if 'delete' in request.POST:
             user.delete()
             messages.success(request, 'Your profile has been deleted.')
-            return redirect('home')
+            return redirect('index')
 
     else:
         u_form = UserUpdateForm(

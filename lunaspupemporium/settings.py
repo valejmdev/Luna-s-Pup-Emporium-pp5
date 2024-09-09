@@ -31,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'SECRET_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapp.com',
                  '127.0.0.1',
@@ -140,7 +140,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 ACCOUNT_FORMS = {
-    'signup': 'store.forms.CustomSignupForm',
+    'signup': 'profiles.forms.CustomSignupForm',
 }
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username'

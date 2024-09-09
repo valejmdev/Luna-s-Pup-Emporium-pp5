@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Category, ProductImage, Review, FAQ
+from .models import Product, Category, ProductImage, Review, FAQ, NewsletterSubscriber
 
 
 @admin.register(Product)
@@ -32,3 +32,9 @@ class FAQAdmin(admin.ModelAdmin):
 
 
 admin.site.register(FAQ, FAQAdmin)
+
+
+@admin.register(NewsletterSubscriber)
+class NewsletterSubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email', 'subscribed_on')
+    search_fields = ('email',)
