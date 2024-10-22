@@ -484,13 +484,13 @@ def send_order_confirmation(request, order_id):
     return render(request, 'store/confirmation.html')
 
 
-def error_403(request, exception=None):
-    return render(request, 'store/403.html', status=403)
+#def error_403(request, exception=None):
+   # return render(request, 'store/403.html', status=403)
 
 
-def error_404(request, exception=None):
-    return render(request, 'store/404.html', status=404)
+#def error_404(request, exception=None):
+   # return render(request, 'store/404.html', status=404)
 
 
-def error_500(request):
-    return render(request, 'store/500.html', status=500)
+#def error_500(request):
+   # return render(request, 'store/500.html', status=500)
