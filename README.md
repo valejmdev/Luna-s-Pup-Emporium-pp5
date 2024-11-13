@@ -558,23 +558,23 @@ The below table provides evidence of manual testing carried out for each feature
 
 | Feature                | Test                                                              | Expected Outcome                                               | Screenshot                                                        | Pass/Fail |
 | ---------------------- | ----------------------------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------- | --------- |
-| Register               | Register a new user                                               | User is registered and redirected to the login page             | ![screenshot](documentation/manual/manualtestingregister.png)      | Pass      |
-| Login                  | Log in with registered user                                       | User is logged in and redirected to the profile page            | ![screenshot](documentation/manual/manualtestinglogin.png)         | Pass      |
-| Add to Cart            | Add a product to the shopping cart                                | Product is added to the cart and displayed in the cart page     | ![screenshot](documentation/manual/manualtestingaddtocart.png)     | Pass      |
-| Update Cart            | Update product quantity in the cart                               | Cart is updated with correct quantity and total price           | ![screenshot](documentation/manual/manualtestingupdatecart.png)    | Pass      |
-| Remove from Cart       | Remove a product from the shopping cart                           | Product is removed from the cart and cart page is updated       | ![screenshot](documentation/manual/manualtestingremovefromcart.png)| Pass      |
-| View Cart              | View the shopping cart                                            | All added products are displayed with correct totals            | ![screenshot](documentation/manual/manualtestingviewcart.png)      | Pass      |
-| Checkout               | Complete the checkout process                                     | User is redirected to payment page with correct order summary   | ![screenshot](documentation/manual/manualtestingcheckout.png)      | Pass      |
-| Payment                | Proceed with payment using valid payment details                  | Payment is processed, and user is redirected to order confirmation page | ![screenshot](documentation/manual/manualtestingpayment.png) | Pass      |
-| Order Confirmation     | View order confirmation after successful checkout                 | Order details are displayed, and confirmation email is sent     | ![screenshot](documentation/manual/manualtestingorderconfirmation.png)| Pass |
-| View Orders            | View past orders in the user’s profile                            | All previous orders are displayed with details                  | ![screenshot](documentation/manual/manualtestingvieworders.png)    | Pass      |
-| Contact Us             | Submit the contact form with valid details                        | Form is submitted, and a success message is displayed           | ![screenshot](documentation/manual/manualtestingcontactus.png)     | Pass      |
-| Newsletter Signup      | Subscribe to the newsletter using a valid email address           | User is subscribed, and confirmation message is shown           | ![screenshot](documentation/manual/manualtestingnewsletter.png)    | Pass      |
-| Product Search         | Search for products using the search bar                          | Matching products are displayed in the product list page        | ![screenshot](documentation/manual/manualtestingproductsearch.png) | Pass      |
-| Product Detail         | View a product’s detail page                                      | Product details, price, and options are displayed               | ![screenshot](documentation/manual/manualtestingproductdetail.png) | Pass      |
-| Filter Products        | Use filters to sort products (eg. price, review) | Filtered products are displayed in the product list             | ![screenshot](documentation/manual/manualtestingfilterproducts.png)| Pass      |
-| Special Offers         | View special offers page                                          | Discounted products are displayed with promotional information  | ![screenshot](documentation/manual/manualtestingspecialoffers.png) | Pass      |
-| Profile                | View user’s profile                                               | Profile page with user details and order history is displayed   | ![screenshot](documentation/manual/manualtestingprofile.png)       | Pass      |
+| Register               | Register a new user                                               | User is registered and redirected to the login page             | ![screenshot](documentation/validation/manual/manualtestingregister.png)      | Pass      |
+| Login                  | Log in with registered user                                       | User is logged in and redirected to the profile page            | ![screenshot](documentation/validation/manual/manualtestinglogin.png)         | Pass      |
+| Add to Cart            | Add a product to the shopping cart                                | Product is added to the cart and displayed in the cart page     | ![screenshot](documentation/validation/manual/manualtestingaddtocart.png)     | Pass      |
+| Update Cart            | Update product quantity in the cart                               | Cart is updated with correct quantity and total price           | ![screenshot](documentation/validation/manual/manualtestingupdatecart.png)    | Pass      |
+| Remove from Cart       | Remove a product from the shopping cart                           | Product is removed from the cart and cart page is updated       | ![screenshot](documentation/validation/manual/manualtestingremovefromcart.png)| Pass      |
+| View Cart              | View the shopping cart                                            | All added products are displayed with correct totals            | ![screenshot](documentation/validation/manual/manualtestingviewcart.png)      | Pass      |
+| Checkout               | Complete the checkout process                                     | User is redirected to payment page with correct order summary   | ![screenshot](documentation/validation/manual/manualtestingcheckout.png)      | Pass      |
+| Payment                | Proceed with payment using valid payment details                  | Payment is processed, and user is redirected to order confirmation page | ![screenshot](documentation/validation/manual/manualtestingpayment.png) | Pass      |
+| Order Confirmation     | View order confirmation after successful checkout                 | Order details are displayed, and confirmation email is sent     | ![screenshot](documentation/validation/manual/manualtestingorderconfirmation.png)| Pass |
+| View Orders            | View past orders in the user’s profile                            | All previous orders are displayed with details                  | ![screenshot](documentation/validation/manual/manualtestingvieworders.png)    | Pass      |
+| Contact Us             | Submit the contact form with valid details                        | Form is submitted, and a success message is displayed           | ![screenshot](documentation/validation/manual/manualtestingcontactus.png)     | Pass      |
+| Newsletter Signup      | Subscribe to the newsletter using a valid email address           | User is subscribed, and confirmation message is shown           | ![screenshot](documentation/validation/manual/manualtestingnewsletter.png)    | Pass      |
+| Product Search         | Search for products using the search bar                          | Matching products are displayed in the product list page        | ![screenshot](documentation/validation/manual/manualtestingproductsearch.png) | Pass      |
+| Product Detail         | View a product’s detail page                                      | Product details, price, and options are displayed               | ![screenshot](documentation/validation/manual/manualtestingproductdetail.png) | Pass      |
+| Filter Products        | Use filters to sort products (eg. price, review) | Filtered products are displayed in the product list             | ![screenshot](documentation/validation/manual/manualtestingfilterproducts.png)| Pass      |
+| Special Offers         | View special offers page                                          | Discounted products are displayed with promotional information  | ![screenshot](documentation/validation/manual/manualtestingspecialoffers.png) | Pass      |
+| Profile                | View user’s profile                                               | Profile page with user details and order history is displayed   | ![screenshot](documentation/validation/manual/manualtestingprofile.png)       | Pass      |
 
 
 
@@ -680,7 +680,7 @@ That means, the result you can see right now on the deployed page looks differen
 
 | Page | Screenshot |
 | --- | --- |
-| Index | ![screenshot](documentation/wireframes/desktop_index.png) |
+| Index | ![screenshot](documentation/wireframes/desktopindex.png) |
 | Product List | ![screenshot](documentation/wireframes/desktopproductlist.png) |
 | Product Detail | ![screenshot](documentation/wireframes/desktopproductdetail.png) |
 | Cart | ![screenshot](documentation/wireframes/desktopcart.png) |
@@ -691,8 +691,8 @@ That means, the result you can see right now on the deployed page looks differen
 | Page | Screenshot |
 | --- | --- |
 | Index | ![screenshot](documentation/wireframes/tabletindex.png) |
-| Product List | ![screenshot](documentation/wireframes/tabletproductlist.png) |
-| Product Detail | ![screenshot](documentation/wireframes/tablet_productdetail.png) |
+| Product List | ![screenshot](documentation/wireframes/tabletproduct_list.png) |
+| Product Detail | ![screenshot](documentation/wireframes/tablet_product_detail.png) |
 | Cart | ![screenshot](documentation/wireframes/tabletcart.png) |
 | Checkout | ![screenshot](documentation/wireframes/tabletcheckout.png) |
 
@@ -702,7 +702,7 @@ That means, the result you can see right now on the deployed page looks differen
 | --- | --- |
 | Index | ![screenshot](documentation/wireframes/mobileindex.png) |
 | Product List | ![screenshot](documentation/wireframes/mobileproductlist.png) |
-| Product Detail | ![screenshot](documentation/wireframes/mobileproductdetail.png) |
+| Product Detail | ![screenshot](documentation/wireframes/mobileproduct_detail.png) |
 | Cart | ![screenshot](documentation/wireframes/mobilecart.png) |
 | Checkout | ![screenshot](documentation/wireframes/mobilecheckout.png) |
 
@@ -788,8 +788,7 @@ In this project, I adopted an agile approach to manage the development of **Luna
 ### Agile Plan
 
 The following is the agile plan I followed throughout the project. Each milestone was carefully tracked in Notion, ensuring I met my deadlines with some fixes and adjustments along the way.
-![screenshot](documentation/agilepart1.png)
-![screenshot](documentation/agilepart2.png)
+<https://mulberry-tuberose-c78.notion.site/Agile-Development-Wiki-E-Commerce-Dog-Products-Shop-a740b3e04dc74742b476ceeb72e220f8>
 ----------
 
 ### **1. Project Initialization (10th August - 12th August)**
