@@ -27,7 +27,3 @@ urlpatterns = [
     path('about/', views.about_us, name='about_us'),
     path('contact/', views.contact_us, name='contact_us'),
 ]
-
-#handler403 = 'store.views.error_403'
-#handler404 = 'store.views.error_404'
-#handler500 = 'store.views.error_500'
