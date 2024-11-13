@@ -692,7 +692,7 @@ That means, the result you can see right now on the deployed page looks differen
 | --- | --- |
 | Index | ![screenshot](documentation/wireframes/tabletindex.png) |
 | Product List | ![screenshot](documentation/wireframes/tabletproduct_list.png) |
-| Product Detail | ![screenshot](documentation/wireframes/tablet_product_detail.png) |
+| Product Detail | ![screenshot](documentation/wireframes/tabletproduct_detail.png) |
 | Cart | ![screenshot](documentation/wireframes/tabletcart.png) |
 | Checkout | ![screenshot](documentation/wireframes/tabletcheckout.png) |
 
@@ -788,7 +788,9 @@ In this project, I adopted an agile approach to manage the development of **Luna
 ### Agile Plan
 
 The following is the agile plan I followed throughout the project. Each milestone was carefully tracked in Notion, ensuring I met my deadlines with some fixes and adjustments along the way.
-<https://mulberry-tuberose-c78.notion.site/Agile-Development-Wiki-E-Commerce-Dog-Products-Shop-a740b3e04dc74742b476ceeb72e220f8>
+
+
+This is the Link to my public Notion Agile Plan: <https://mulberry-tuberose-c78.notion.site/Agile-Development-Wiki-E-Commerce-Dog-Products-Shop-a740b3e04dc74742b476ceeb72e220f8>
 ----------
 
 ### **1. Project Initialization (10th August - 12th August)**
